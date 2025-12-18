@@ -172,6 +172,54 @@
             box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
         }
 
+        /* --- MESSAGE DE SOUTIEN (Style Warning/Erreur intégré) --- */
+        .support-msg-container {
+            background-color: #fff;
+            border: 2px dashed var(--brand-accent); /* Rappel du design d'alerte */
+            border-radius: var(--radius);
+            padding: 20px;
+            text-align: center;
+            margin: 0 auto 25px auto;
+            max-width: 800px;
+            box-shadow: var(--shadow-soft);
+            font-family: 'Montserrat', sans-serif;
+            color: var(--brand-dark);
+            animation: slideIn 0.4s ease-out;
+        }
+
+        .support-text {
+            margin: 0 0 12px 0;
+            font-weight: 600;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .btn-fb-follow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #1877F2; /* Bleu Facebook officiel */
+            color: white;
+            padding: 10px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .btn-fb-follow:hover {
+            background-color: #166fe5;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(24, 119, 242, 0.3);
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         /* --- LAYOUT --- */
         .container {
             display: flex;
@@ -588,7 +636,7 @@
             /* =========================================
                2. NETTOYAGE
                ========================================= */
-            header, aside, .toolbar, footer, .prof-control, .nav-item, .btn-action, .btn-primary-action {
+            header, aside, .toolbar, footer, .prof-control, .nav-item, .btn-action, .btn-primary-action, .support-msg-container {
                 display: none !important;
             }
 
@@ -698,7 +746,7 @@
         </div>
         <div class="prof-control">
             <span>Enseignant(e) :</span>
-            <input type="text" id="profNameInput" placeholder="Votre nom" value="Prof. Ikbal OUAISSA">
+            <input type="text" id="profNameInput" placeholder="Votre nom" value="Ikbal OUAISSA">
             <button class="btn-validate" onclick="updateTeacherName()"><i class="fas fa-arrow-right"></i></button>
         </div>
     </header>
@@ -714,6 +762,16 @@
         <main>
             <div class="toolbar">
                 <button class="btn-action" onclick="printSingle()"><i class="fas fa-print"></i> Imprimer la fiche</button>
+            </div>
+
+            <!-- BLOC DE SOUTIEN -->
+            <div class="support-msg-container">
+                <p class="support-text">
+                    Si ce travail vous a été utile, soutenez le créateur en le suivant sur Facebook afin d’encourager davantage de projets pédagogiques utiles et gratuits.
+                </p>
+                <a href="https://www.facebook.com/ikbal.ouaissa" target="_blank" rel="noopener noreferrer" class="btn-fb-follow">
+                    <i class="fab fa-facebook"></i> Suivre
+                </a>
             </div>
 
             <div id="fiche-display">
@@ -1574,7 +1632,7 @@ const pedagogicalData = [
 ];
 
     // LOGIQUE DE L'APPLICATION
-    let currentProfName = "Prof. Ikbal OUAISSA";
+    let currentProfName = "Ikbal OUAISSA";
     let currentDiscipline = null;
 
     function init() {
@@ -1595,11 +1653,54 @@ const pedagogicalData = [
         });
     }
 
+    // --- FONCTIONS DE VALIDATION ET MISE À JOUR ---
+
+    function validateTeacherName(name) {
+        const cleanName = name.trim();
+        
+        // 1. Vérifications basiques (Vide, Chiffres, Points)
+        // Regex : Vide OU contient chiffre OU contient point
+        if (cleanName.length === 0 || /[\d\.]/.test(cleanName)) {
+            return "Hein !!! que faites-vous ? Votre nom SVP 🤪";
+        }
+
+        // 2. Mots interdits (Insensible à la casse)
+        // Regex : mot entier prof, professeur, enseignant, enseignante
+        const forbiddenPattern = /\b(prof|professeur|enseignant|enseignante)\b/i;
+        if (forbiddenPattern.test(cleanName)) {
+            return "مطور مع راسك كتب سميتك نيشان";
+        }
+
+        return ""; // Aucune erreur
+    }
+
     function updateTeacherName() {
         const input = document.getElementById('profNameInput');
-        currentProfName = input.value;
-        if(currentDiscipline) renderDiscipline(currentDiscipline);
-        alert("Nom du professeur mis à jour !");
+        const nameValue = input.value;
+        const errorMessage = validateTeacherName(nameValue);
+
+        // Réinitialiser le message d'abord pour éviter les conflits
+        input.setCustomValidity("");
+
+        if (errorMessage) {
+            // Affichage de l'erreur native avec le message personnalisé
+            input.setCustomValidity(errorMessage);
+            input.reportValidity();
+            
+            // Astuce : On nettoie l'erreur dès que l'utilisateur retouche au champ
+            input.oninput = function() {
+                input.setCustomValidity("");
+            };
+        } else {
+            // Validation réussie
+            currentProfName = nameValue;
+            
+            // Mise à jour de l'affichage si une discipline est active
+            if(currentDiscipline) renderDiscipline(currentDiscipline);
+            
+            // Feedback discret (optionnel)
+            // alert("Nom du professeur mis à jour !"); 
+        }
     }
 
     function renderDiscipline(discipline) {
