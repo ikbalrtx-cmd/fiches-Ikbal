@@ -628,6 +628,119 @@
         }
         footer a:hover::after { transform: scaleX(1); }
 
+        /* RESPONSIVE MOBILE */
+        @media screen and (max-width: 900px) {
+            body {
+                height: auto;
+                overflow-x: hidden;
+            }
+            
+            /* Layout vertical */
+            .container {
+                flex-direction: column;
+                height: auto;
+                overflow: visible;
+            }
+
+            /* Header s'adapte */
+            header {
+                height: auto;
+                flex-direction: column;
+                padding: 15px;
+                gap: 15px;
+            }
+            
+            .prof-controls-wrapper {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .input-name {
+                width: 100px; /* Plus petit sur mobile */
+            }
+
+            /* Sidebar en haut */
+            aside {
+                width: 100%;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                padding: 15px;
+            }
+            
+            #menu-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+            
+            .nav-item {
+                flex: 1 1 45%; /* 2 items par ligne */
+                font-size: 0.8rem;
+                margin-bottom: 0;
+            }
+
+            /* Main content */
+            main {
+                width: 100%;
+                height: auto;
+                overflow: visible;
+                padding: 15px;
+            }
+
+            /* Fiche plus compacte */
+            .fiche-preview {
+                padding: 20px 15px;
+                width: 100%;
+                border-radius: 8px;
+            }
+            
+            .fiche-preview::before {
+                display: none; /* Enlève la barre déco latérale pour gagner de la place */
+            }
+
+            .fiche-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            .header-main h2 {
+                font-size: 1.5rem;
+            }
+            
+            .lesson-block {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .lesson-meta {
+                width: 100%;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+            }
+
+            /* Tableaux scrollables */
+            .pedago-table {
+                display: block;
+                width: 100%;
+                overflow-x: auto;
+                white-space: normal;
+            }
+            
+            .pedago-table th, .pedago-table td {
+                min-width: 120px; /* Force une largeur min pour déclencher le scroll si besoin */
+            }
+            
+            /* Support block */
+            .support-msg-container {
+                margin: 10px 0 20px 0;
+            }
+        }
+
         /* IMPRESSION (Intouché pour garantir le fonctionnement) */
         @media print {
             /* =========================================
