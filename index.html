@@ -1,0 +1,1754 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiches Pédagogiques - Unité 3 (Sciences et Technologies)</title>
+    
+    <!-- Polices Google Modernes : Roboto & Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            /* Palette "Deep Ocean & Coral" - Très Pro */
+            --brand-dark: #0f172a;      /* Bleu nuit très sombre (Sidebar/Titres) */
+            --brand-primary: #334155;   /* Gris bleuté (Textes forts) */
+            --brand-accent: #f43f5e;    /* Corail/Rose (Actions/Focus) */
+            --brand-accent-hover: #be123c;
+            
+            --bg-body: #f8fafc;         /* Gris très clair */
+            --bg-surface: #ffffff;      /* Blanc pur */
+            --bg-sidebar: #1e293b;      /* Sidebar sombre */
+            
+            --text-main: #1e293b;
+            --text-light: #64748b;
+            --text-inverse: #f1f5f9;    /* Texte sur fond sombre */
+            
+            --border-color: #e2e8f0;
+            
+            --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --shadow-card: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+            
+            --radius: 12px;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Roboto', sans-serif; /* Changement de police principale */
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background-color: var(--bg-surface);
+            padding: 0 2rem;
+            height: 70px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            z-index: 50;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--brand-dark);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            letter-spacing: -0.5px;
+        }
+        
+        .logo i { 
+            color: var(--bg-surface); 
+            background: linear-gradient(135deg, var(--brand-accent), #fb7185);
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            box-shadow: 0 2px 5px rgba(244, 63, 94, 0.3);
+        }
+
+        .prof-control {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            background: var(--bg-body);
+            padding: 6px 8px 6px 16px;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        
+        .prof-control:focus-within {
+            border-color: var(--brand-accent);
+            box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.1);
+            background: var(--bg-surface);
+        }
+
+        .prof-control span {
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-light);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        input[type="text"] {
+            padding: 6px 10px;
+            border: none;
+            background: transparent;
+            width: 180px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+            color: var(--brand-dark);
+            font-size: 0.95rem;
+        }
+        
+        input[type="text"]:focus { outline: none; }
+
+        button {
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+            font-family: 'Montserrat', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .btn-validate { 
+            background-color: var(--brand-dark); 
+            color: white; 
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-validate:hover { background-color: var(--brand-accent); transform: rotate(15deg); }
+
+        .btn-action { 
+            background-color: var(--bg-surface); 
+            border: 1px solid var(--border-color); 
+            color: var(--brand-dark); 
+            box-shadow: var(--shadow-soft);
+            padding: 10px 24px;
+            border-radius: 30px;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+        .btn-action:hover { 
+            background-color: var(--brand-dark); 
+            color: white;
+            border-color: var(--brand-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+        }
+
+        /* --- LAYOUT --- */
+        .container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* --- SIDEBAR (Dark Theme) --- */
+        aside {
+            width: 280px;
+            background-color: var(--bg-sidebar);
+            border-right: 1px solid #334155;
+            overflow-y: auto;
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            color: var(--text-inverse);
+        }
+
+        .nav-section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: #94a3b8; /* Gris bleu clair */
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            padding-left: 12px;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 8px;
+        }
+
+        .nav-item {
+            padding: 12px 16px;
+            margin-bottom: 6px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            color: #cbd5e1; /* Texte clair */
+            transition: all 0.2s;
+            font-size: 0.9rem;
+            font-weight: 400;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .nav-item:hover { 
+            background-color: rgba(255, 255, 255, 0.05); 
+            color: white;
+            padding-left: 20px; /* Petit effet de mouvement */
+        }
+        
+        .nav-item.active { 
+            background: linear-gradient(90deg, var(--brand-accent), #e11d48);
+            color: white; 
+            font-weight: 600; 
+            box-shadow: 0 4px 12px rgba(244, 63, 94, 0.3);
+        }
+        
+        .nav-item i { 
+            width: 20px; 
+            text-align: center; 
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        .nav-item.active i { opacity: 1; }
+
+        /* --- MAIN CONTENT --- */
+        main {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            background-image: 
+                radial-gradient(#e2e8f0 1px, transparent 1px),
+                radial-gradient(#e2e8f0 1px, transparent 1px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+        }
+
+        .toolbar {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            pointer-events: none;
+        }
+        .toolbar button {
+            pointer-events: auto;
+        }
+
+        /* --- FICHE CARD DESIGN --- */
+        .fiche-preview {
+            background-color: var(--bg-surface);
+            border-radius: 16px; /* Coins plus arrondis */
+            box-shadow: var(--shadow-card);
+            padding: 60px;
+            max-width: 210mm;
+            margin: 0 auto;
+            min-height: 297mm;
+            position: relative;
+            border-top: none;
+        }
+        
+        /* Bande décorative sur le côté */
+        .fiche-preview::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 40px;
+            bottom: 40px;
+            width: 6px;
+            background: linear-gradient(to bottom, var(--brand-dark), var(--brand-accent));
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* Header de la fiche */
+        .fiche-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--bg-body);
+        }
+
+        .header-main h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            color: var(--brand-dark);
+            margin: 0 0 10px 0;
+            line-height: 1.2;
+            font-weight: 800;
+        }
+
+        .prof-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #f1f5f9;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: var(--brand-primary);
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .prof-badge i { color: var(--brand-accent); }
+
+        .unit-badge {
+            background-color: var(--brand-dark);
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            min-width: 130px;
+            box-shadow: 0 10px 20px -5px rgba(15, 23, 42, 0.3);
+        }
+        .unit-badge span {
+            display: block;
+            font-size: 0.6rem;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .unit-badge strong {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            display: block;
+        }
+
+        /* Bloc Titre Leçon */
+        .lesson-block {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Petit accent décoratif */
+        .lesson-block::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--brand-accent);
+        }
+
+        .lesson-info h3 {
+            margin: 0;
+            color: var(--brand-dark);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .lesson-meta {
+            display: flex;
+            gap: 10px;
+        }
+
+        .meta-tag {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--brand-primary);
+            background: #f1f5f9;
+            padding: 8px 12px;
+            border-radius: 6px;
+        }
+        .meta-tag i { color: var(--brand-accent); }
+
+        /* Objectifs */
+        .objectives-container {
+            background-color: #f0fdfa; /* Teal très clair */
+            border-left: 4px solid #14b8a6; /* Teal */
+            border-radius: 0 8px 8px 0;
+            padding: 20px 25px;
+            margin-bottom: 35px;
+        }
+
+        .obj-title {
+            font-weight: 800;
+            font-family: 'Montserrat', sans-serif;
+            color: #0f766e; /* Teal Dark */
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 1px;
+        }
+        
+        .obj-content {
+            color: #134e4a;
+            font-size: 1rem;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        /* Tableau Pédagogique - Style Zebra */
+        .pedago-table {
+            width: 100%;
+            border-collapse: collapse; /* Changement pour style plus clean */
+            margin-bottom: 25px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .pedago-table th {
+            background-color: var(--brand-dark);
+            color: white;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            padding: 16px 20px;
+            text-align: left;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .pedago-table td {
+            padding: 20px;
+            border-bottom: 1px solid #f1f5f9;
+            vertical-align: top;
+            font-size: 0.95rem;
+            color: var(--brand-primary);
+        }
+
+        .pedago-table tr:nth-child(even) td {
+            background-color: #f8fafc; /* Zebra striping */
+        }
+        
+        .pedago-table tr:last-child td { border-bottom: none; }
+        
+        /* Colonnes spécifiques */
+        .col-session { 
+            width: 15%; 
+            font-weight: 700;
+            color: var(--brand-dark) !important;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem !important;
+        }
+        
+        .phase-label {
+            display: block;
+            margin-top: 8px;
+            font-size: 0.65rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Boites de contenu spécial */
+        .special-content {
+            margin-top: 15px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        .dialogue {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            color: var(--brand-primary);
+        }
+        .dialogue::before {
+            content: '\f075'; /* Icone quote */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: #cbd5e1;
+            font-size: 1.5rem;
+        }
+        
+        .corpus {
+            background-color: #fffbeb; /* Jaune très pâle */
+            border-left: 3px solid #f59e0b; /* Amber */
+            color: #92400e;
+            font-family: 'Roboto', sans-serif;
+            font-style: italic;
+        }
+
+        .content-label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 800;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            opacity: 0.9;
+        }
+
+        /* PIED DE PAGE */
+        footer {
+            margin-top: auto;
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-surface);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        footer a { 
+            color: var(--brand-dark); 
+            font-weight: 700;
+            text-decoration: none;
+            position: relative;
+        }
+        footer a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--brand-accent);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        footer a:hover::after { transform: scaleX(1); }
+
+        /* IMPRESSION (Intouché pour garantir le fonctionnement) */
+        @media print {
+            /* =========================================
+               1. MARGES AU MINIMUM
+               ========================================= */
+            @page {
+                size: A4;
+                margin: 5mm; 
+            }
+
+            html, body {
+                width: 100%;
+                height: auto !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                background: white !important;
+                overflow: visible !important;
+                display: block !important;
+                font-family: 'Roboto', sans-serif !important; /* Force font print */
+            }
+
+            /* =========================================
+               2. NETTOYAGE
+               ========================================= */
+            header, aside, .toolbar, footer, .prof-control, .nav-item, .btn-action, .btn-primary-action {
+                display: none !important;
+            }
+
+            /* =========================================
+               3. GESTION DES CONTENEURS
+               ========================================= */
+            .container, main, #fiche-display, #print-area {
+                width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                display: block !important;
+                overflow: visible !important;
+                height: auto !important;
+                background: white !important;
+            }
+
+            .fiche-preview {
+                border: none !important;
+                box-shadow: none !important;
+                width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                background: white !important;
+            }
+            
+            .fiche-preview::before { display: none !important; } /* Cacher la bande déco */
+
+            .page-break {
+                page-break-after: always !important;
+                break-after: always !important;
+                display: block !important;
+                height: 1px !important;
+                margin: 0 !important;
+                border: none !important;
+            }
+
+            /* =========================================
+               4. TABLEAUX
+               ========================================= */
+            table {
+                width: 100% !important;
+                border-collapse: collapse !important;
+                margin-bottom: 10px !important;
+                border: 1px solid #000 !important;
+            }
+
+            thead { display: table-header-group !important; }
+            tbody, tr { page-break-inside: auto !important; }
+
+            td, th {
+                border: 1px solid #000 !important;
+                padding: 5px 8px !important;
+                font-size: 10pt !important;
+                line-height: 1.25 !important;
+                vertical-align: top !important;
+                text-align: left !important;
+                color: black !important;
+            }
+
+            /* =========================================
+               5. ESTHÉTIQUE PRINT
+               ========================================= */
+            th {
+                background-color: #eee !important;
+                font-weight: bold !important;
+                -webkit-print-color-adjust: exact !important; 
+                print-color-adjust: exact !important;
+            }
+            
+            .phase-label {
+                color: black !important;
+                font-weight: bold !important;
+            }
+
+            h2, h3, .fiche-header, .lesson-block, .objectives-container {
+                page-break-inside: avoid !important;
+                page-break-after: avoid !important;
+                color: black !important;
+                border-color: black !important;
+                box-shadow: none !important;
+            }
+            
+            .unit-badge {
+                background: none !important;
+                color: black !important;
+                border: 1px solid black !important;
+                box-shadow: none !important;
+            }
+            
+            .lesson-block::after { display: none !important; }
+            .dialogue::before { display: none !important; }
+            
+            .special-content {
+                border: 1px solid #ccc !important;
+                color: black !important;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <i class="fas fa-graduation-cap"></i>
+            <span>Mes Fiches 6AEP</span>
+        </div>
+        <div class="prof-control">
+            <span>Enseignant(e) :</span>
+            <input type="text" id="profNameInput" placeholder="Votre nom" value="Prof. Ikbal OUAISSA">
+            <button class="btn-validate" onclick="updateTeacherName()"><i class="fas fa-arrow-right"></i></button>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside>
+            <div class="nav-section-title">Menu Principal</div>
+            <div id="menu-container">
+                <!-- Injection JS -->
+            </div>
+        </aside>
+
+        <main>
+            <div class="toolbar">
+                <button class="btn-action" onclick="printSingle()"><i class="fas fa-print"></i> Imprimer la fiche</button>
+            </div>
+
+            <div id="fiche-display">
+                <!-- Injection JS -->
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        Conception & Design : <a href="https://facebook.com/ikbal.ouaissa" target="_blank">Prof. Ikbal OUAISSA</a> | Conforme au Guide Pédagogique
+    </footer>
+
+    <div id="print-area"></div>
+
+<script>
+// ==========================================
+// DONNÉES PÉDAGOGIQUES (CONTENU EXACT PDF)
+// ==========================================
+
+const pedagogicalData = [
+  {
+    id: "communication",
+    title: "Communication et actes de langage",
+    icon: "fas fa-comments",
+    lessons: [
+      {
+        title: "Sciences et technologies (Donner des informations pratiques)",
+        weeks: "Semaines 12 et 13",
+        duration: "4 séances x 30 min",
+        objectives: "Donner des informations pratiques",
+        steps: [
+          {
+            session: "Séance 1",
+            phase: "Avant l'écoute - Observation/Découverte (Présentation de l'unité)",
+            prof: "• Demande d'ouvrir le livret page 75.<br>• Fait observer le contenu de la page d'ouverture.<br>• Pose les questions suivantes :<br>a. Quelle est le numéro de l'unité ?<br>b. Quel est le thème de l'unité ?<br>c. Quelle est la question posée ?<br>d. A ton avis de quoi va-t-on parler dans cette unité ?<br>• Pose les questions de la rubrique « J'observe et je découvre ».<br>1. Que représentent ces illustrations ?<br>2. De quels appareils s'agit-il ?<br>3. De quels moyens de transport s'agit-il ?<br>4. Ces appareils et ces moyens de transport existaient-ils déjà il y a longtemps ?<br>5. Quel est le rôle de chacun ?<br>6. Ces appareils et ces moyens de transport sont-ils utiles ?<br>7. Qui est le personnage ? Où se trouve-t-il ?<br>• Informe sur le projet de classe : Réaliser un dossier sur les sciences et technologies.<br>• Lit et fait lire la sous-compétence : À la fin de cette unité, tu seras capable de comprendre et de produire à l'oral et à l'écrit des textes à visée informative et argumentative.",
+            student: "• Ouvre le livret page 75.<br>• Observe le contenu.<br>• Répond aux questions :<br>a. C'est le numéro 3.<br>b. Sciences et technologies.<br>c. Les sciences et les technologies ont-elles facilité la vie des hommes ?<br>d. ...<br>• Observe et découvre.<br>1. Des appareils et des moyens de transport.<br>2. Un robot, un téléphone portable...<br>3. Un avion, un TGV, une fusée...<br>4. Non, ils sont nouveaux.<br>5. C'est la communication, le voyage...<br>6. Ils sont très utiles pour l'homme.<br>7. Un savant dans son laboratoire.<br>• S'informe sur le projet de classe.<br>• Lit la sous-compétence.",
+            mode: "Travail collectif"
+          },
+          {
+            session: "Séance 1 (suite)",
+            phase: "Avant l'écoute - Observation/Découverte (J'observe et je découvre)",
+            prof: "• Indique la page du livret et oriente l'observation des apprenants à l'aide des questions leur permettant de formuler des hypothèses.<br>1. Que représente ce dessin ?<br>2. Où se passe la scène ?<br>3. Il y a combien de personnes ?<br>4. Qui peuvent-elles être ?<br>5. À ton avis, de quoi parlent ces personnes ?<br>6. Quelles informations pratiques donne le responsable ?",
+            student: "• Observe l'illustration et formule des hypothèses.<br>1. Des personnes près du rail.<br>2. Dans une gare de chemin de fer.<br>3. Cinq personnes.<br>4. Des visiteurs avec un responsable.<br>5. Elles parlent des trains, de la gare, des horaires, des voyageurs.<br>6. Des informations sur les trains, sur le réseau et sur un voyage pratique par train.",
+            mode: "Travail collectif"
+          },
+          {
+            session: "Séance 2",
+            phase: "Pendant l'écoute - Compréhension (J'écoute et je comprends)",
+            prof: "• Fait écouter le dialogue ou le support audio deux fois.<br>Dialogue : Des enfants avec un responsable dans une gare ferroviaire marocaine.<br>• Pose les questions de la rubrique « J'écoute et je comprends ».<br>1. Qui pose les questions et pourquoi ?<br>2. Qui répond aux questions et que donne-t-il ?<br>3. Autour de quel sujet tournent les questions et les réponses ?<br>4. Quels sont les types de trains utilisés ?<br>5. De quoi se compose un train de voyageurs ?<br>6. Quelle est la longueur du réseau ferroviaire du Maroc ?<br>7. Qui a inauguré la « Ligne Atlantique » ?<br>8. On parle d'Al Boraq. Qu'est-ce que c'est ?<br>• Dit le dialogue.<br>• Joue le dialogue avec des élèves.<br>• Explique le lexique et les structures de chaque réplique.",
+            student: "• Ecoute le dialogue.<br>• Répond aux questions :<br>1. Les élèves d'une école pour avoir des informations.<br>2. Un responsable de la gare.<br>3. Autour des trains et des lignes et du réseau.<br>4. Trois types de train.<br>5. Il se compose d'une locomotive et d'une rame formée de wagons.<br>6. La longueur est de 2200 kilomètres.<br>7. Sa Majesté le Roi Mohammed VI.<br>8. Al boraq est un train à très grande vitesse qui relie Tanger à Casablanca.<br>• Réécoute le dialogue.<br>• Joue le dialogue avec ses camarades.<br>• Assimile le lexique et les structures.",
+            mode: "Travail collectif",
+            dialogue: "Le responsable: Mes enfants, je vous souhaite la bienvenue dans notre gare. Je suis prêt à répondre à vos questions.\nElève 1: Pour notre journal d'école, nous voudrions avoir des informations sur votre gare.\nLe responsable: Bien sûr et avec plaisir.\nElève 2: Merci, monsieur. Nous voudrions avoir des informations sur les trains que vous utilisez.\nLe responsable: Nous utilisons deux types de trains: des trains pour le transport des voyageurs et des trains pour le transport de marchandises.\nFille 1: Vos trains sont-ils anciens ou nouveaux ?\nLe responsable: Nous avons trois générations de trains: des trains à traction diesel, des trains à traction électrique et le dernier né de la technologie. C'est Al Boraq qui est un train à très grande vitesse.\nFille 2: Quelle est la longueur du réseau des chemins de fer marocain ?\nLe responsable: Notre réseau est aujourd'hui parmi les réseaux les plus modernes d'Afrique. Il est de 2200 kilomètres.\nElève 3: Quelle est votre ligne à grande vitesse ?\nLe responsable: C'est la ligne dite « Ligne Atlantique » entre Tanger et Casablanca. Elle a été inaugurée le 15 novembre 2018 par Sa Majesté le Roi Mohammed VI.\nElève 1: Quels sont vos projets ?\nLe responsable: Cette ligne, reliera à terme Marrakech et Agadir. Une autre ligne semblable reliera le Nord-Est du Maroc (Nador et Oujda) en passant par Fès.\nElève 2: Quelles informations pratiques vous nous donnez pour prendre le train dans de bonnes conditions ?\nLe responsable: C'est très simple, acheter un billet, se présenter avant l'heure du départ, composter le billet, trouver la voie du train en regardant le numéro de train sur le ticket, trouver la voiture du train, entrer dans le compartiment, chercher la place, descendre au bon arrêt.\nFille 1: Merci monsieur pour toutes ces informations."
+          },
+          {
+            session: "Séance 3",
+            phase: "Après l'écoute - Application (J'exploite)",
+            prof: "• Fait écouter le dialogue pour faire dégager les actes permettant de donner des informations.<br>• Fait utiliser les actes de langage véhiculés dans le dialogue dans des situations simulées.<br>• Fait trouver d'autres actes de langage.<br>a. Pour demander des informations on pose des questions avec : où ? Quand ? Comment ? Quel; quelle; quels; quelles ?<br>b. On peut donner des informations sur les animaux, les objets, les personnes, le lieu, le moment, le temps, la manière, la quantité en utilisant des verbes, des expressions, des adjectifs.<br>• Fait découvrir les deux situations de communication de la rubrique « J'exploite ».<br>• Lit et fait lire les consignes.<br>a. Observe les images et donne des informations sur ce qu'elles représentent à tes camarades.<br>b. Réponds aux questions de tes camarades de classe en leur donnant des informations sur de ce que représentent ces images.",
+            student: "• Ecoute attentivement le dialogue.<br>• Identifie le lieu, les personnages, les situations.<br>• Utilise les actes de langage véhiculés dans le dialogue dans des situations simulées.<br>• Cherche d'autres actes de langage.<br>• Ecoute et lit les consignes.<br>• Observe les images de la fusée et de l'ordinateur et donne des informations sur ce qu'elles représentent.<br>• Répond aux questions de ses camarades en leur donnant des informations sur le robot et sur l'avion.",
+            mode: "Travail collectif / Travail en dyades"
+          },
+          {
+            session: "Séance 4",
+            phase: "Réinvestissement - Évaluation (Je réinvestis)",
+            prof: "• Invite à prendre la parole pour s'exprimer à partir de la rubrique « Je réinvestis ».<br>• S'assure de la compréhension de la consigne.<br>Donne des informations à tes camarades de classe sur le train Al Boraq marocain.<br>• Invite à réfléchir avant de répondre et à préparer les réponses.<br>• Donne la parole pour s'exprimer.<br>• Evalue et demande de s'auto-évaluer.",
+            student: "• Comprend la consigne.<br>• Prend la parole pour donner des informations à tes camarades de classe sur le train Al Boraq marocain.<br>• Ecoute les productions de ses camarades.<br>• Evalue et s'auto-évalue.",
+            mode: "Travail individuel"
+          }
+        ]
+      },
+      {
+        title: "Sciences et technologies (Exprimer un point de vue)",
+        weeks: "Semaines 14 et 15",
+        duration: "4 séances x 30 min",
+        objectives: "Exprimer un point de vue et le défendre",
+        steps: [
+          {
+            session: "Séance 1",
+            phase: "Avant l'écoute - Observation/Découverte (J'observe et je découvre)",
+            prof: "• Indique la page du livret et oriente l'observation des apprenants à l'aide des questions leur permettant de formuler des hypothèses.<br>• Observe l'illustration et formule des hypothèses à l'aide des questions posées.<br>1. Que représente ce dessin ?<br>2. Où se passe la scène ?<br>3. Qui sont les personnages ?<br>4. À ton avis, de quoi parlent-ils ?<br>5. Qui répond aux questions des élèves ?",
+            student: "• Observe l'illustration et formule des hypothèses.<br>1. Je vois un homme et des enfants.<br>2. Dans une bibliothèque.<br>3. Réponses selon...<br>4. Ils parlent de...<br>5. Réponses selon...",
+            mode: "Travail collectif"
+          },
+          {
+            session: "Séance 2",
+            phase: "Pendant l'écoute - Compréhension (J'écoute et je comprends)",
+            prof: "• Fait écouter le dialogue ou le support audio deux fois.<br>• Pose les questions de la rubrique « J'écoute et je comprends ».<br>1. Quel est le sujet de la rencontre ?<br>2. Qui pose les questions ?<br>3. Les réponses du savant sont-elles catégoriques ?<br>4. Pourquoi la science est-elle utile à l'homme ?<br>5. Quelle est la relation entre la science et la technologie ?<br>6. Un pays peut-il se passer de technologie ?<br>7. Quels sont les pays qui gouvernent le monde ?<br>• Dit le dialogue.<br>• Joue le dialogue avec des élèves.<br>• Explique le lexique et les structures de chaque réplique.",
+            student: "• Ecoute le dialogue.<br>• Répond aux questions.<br>• Réécoute le dialogue.<br>• Joue le dialogue avec ses camarades.<br>• Assimile le lexique et les structures.",
+            mode: "Travail collectif",
+            dialogue: "Le spécialiste: Mes chers enfants. Je suis très content d'être parmi vous dans votre école.\nElève 1: Nous vous remercions monsieur. Quel le rôle de la science ?\nLe spécialiste: A mon avis, la science a un rôle très important car elle permet aux technologies d'exister.\nFille 1: La science est-elle utile à l'homme ?\nLe spécialiste: Moi personnellement, je peux affirmer que c'est la science qui a permis à l'homme de vivre dans de bonnes conditions.\nElève 2: L'homme peut-il vivre sans la science.\nLe spécialiste: Je pense que c'est presque impossible. Sans la science, l'homme n'est rien.\nFille 2: Mais l'homme ancien a vécu sans la science.\nLe spécialiste: Je trouve que vous dites vrai, mais il reste à préciser comment il a vécu et dans quelles conditions.\nElève 3: Quelle est la relation entre la science et les technologies ?\nLe spécialiste: Je trouve que c'est une relation essentielle et importante. La science a elle aussi besoin des technologies pour avancer.\nElève 4: Un pays peut-il progresser sans technologies ?\nLe spécialiste: Il semble que non et en plus il restera un pays arriéré et sans avenir.\nElève 5: Quels sont les pays avancés en technologies ?\nLe spécialiste: Si je ne me trompe pas, ce sont les pays qui gouvernent actuellement le monde. Celui qui a la technologie a le pouvoir. Je suis certain que j'ai répondu à vos questions.\nFille 3: Quelles sont les différentes technologies ?\nLe spécialiste: Il me reste à préciser les différentes technologies. Toutefois le temps ne le permet pas. Ce sera pour la prochaine visite."
+          },
+          {
+            session: "Séance 3",
+            phase: "Après l'écoute - Application (J'exploite)",
+            prof: "• Fait écouter le dialogue pour faire dégager les actes de langage permettant d'exprimer un point de vue.<br>• Fait utiliser les actes de langage véhiculés dans le dialogue dans des situations simulées.<br>• Fait trouver d'autres actes de langage.<br>Pour exprimer son point de vue, on utilise les expressions : Je pense que.../Je crois que.../J'estime que.../Je trouve que/J'imagine que.../Je suppose que.../Je me doute que/A mon avis/D'après moi... ou Selon moi.../J'ai le sentiment que.../J'ai l'impression que...<br>• Fait découvrir les deux situations de communication de la rubrique « J'exploite ».<br>• Lit et fait lire les consignes.<br>a. Observe les images. Exprime ton point de vue devant tes camarades.<br>b. Observe l'image. Exprime ton point de vue devant tes camarades et défends-le.",
+            student: "• Ecoute attentivement le dialogue.<br>• Identifie le lieu, les personnages, les situations.<br>• Utilise les actes de langage véhiculés dans le dialogue dans des situations simulées.<br>• Cherche d'autres actes de langage.<br>• Ecoute et lit les consignes.<br>a. Observe les images de la fusée au décollage et de l'avion et exprime son point de vue devant ses camarades.<br>b. Observe l'image et exprime son point de vue devant ses camarades et le défends.",
+            mode: "Travail collectif / Travail en dyades"
+          },
+          {
+            session: "Séance 4",
+            phase: "Réinvestissement - Évaluation (Je réinvestis)",
+            prof: "• Invite à prendre la parole pour s'exprimer à partir de la rubrique « Je réinvestis ».<br>• S'assure de la compréhension de la consigne.<br>Observe l'image. Exprime ton point de vue devant tes camarades et défends-le.<br>• Invite à réfléchir et à préparer les réponses.<br>• Donne la parole pour s'exprimer.<br>• Evalue et demande de s'auto-évaluer.",
+            student: "• Comprend la consigne.<br>• Prend la parole pour informer sur le travail d'un chercheur et le défendre.<br>• S'aide de la boite à outils.<br>• Ecoute les productions de ses camarades.<br>• Evalue et s'auto-évalue.",
+            mode: "Travail individuel"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: "lecture",
+    title: "Lecture",
+    icon: "fas fa-book-open",
+    lessons: [
+      {
+        title: "Le monde en poche",
+        weeks: "Semaines 12 et 13",
+        duration: "4 séances x 30 min / 2 séances x 25 min",
+        objectives: "Lire un texte informatif",
+        steps: [
+          {
+            session: "Séance 1",
+            phase: "Avant la lecture - Observation/Découverte (J'observe et je découvre)",
+            prof: "• Indique la page du livret et demande d'observer le texte et l'image.<br>• Amène à formuler des hypothèses à l'aide des questions:<br>1. Observe l'illustration. À ton avis, de quoi va parler le texte ?<br>2. Quel est son titre ?<br>3. Quel est son auteur ?<br>4. D'où est-il tiré ?<br>• Transcrit les hypothèses au tableau.",
+            student: "• Observe le texte et l'image.<br>• Formule des hypothèses à l'aide des questions posées.<br>1. Réponses diverses (à accepter).<br>2. Le monde en poche.<br>3. Martine GEHIN.<br>4. Lecture silencieuse, CM2, Hachette Livre 2002.",
+            mode: "Travail collectif"
+          },
+          {
+            session: "Séance 1 (suite)",
+            phase: "Pendant la lecture - Compréhension (Je lis et je comprends)",
+            prof: "Amorce de la compréhension<br>• Fait lire le texte silencieusement.<br>• Vérifie la compréhension en posant des questions.<br>a. De quel téléphone s'agit-il ?<br>b. Où le téléphone portable permet-il de téléphoner ?<br>c. Comment est le téléphone portable ?<br>d. Que fait ce texte ?<br>• Fait affirmer ou infirmer les hypothèses émises.<br>Compréhension<br>• Lit le texte, les livrets ouverts.<br>• Invite les apprenants.es à lire individuellement.<br>• Pose les questions de compréhension.<br>1. Quel outil ont fait naître les technologies nouvelles ?<br>2. À quoi peut-on comparer un téléphone portable ?<br>3. Que permet un téléphone portable ?<br>• Exploite la rubrique « J'enrichis mon lexique ».<br>1. Technologie: étude des techniques, des outils.<br>2. Progresser: avancer.<br>3. Révolution: grand changement.<br>4. Pratique: efficace, utile.",
+            student: "• Lit le texte silencieusement.<br>• Répond aux questions de compréhension.<br>a. Le téléphone portable.<br>b. Partout où l'on se trouve.<br>c. Agréable, facile et pratique.<br>d. Il informe sur un appareil.<br>• Affirme ou infirme les hypothèses émises.<br>• Ecoute le texte et suit sur le livret.<br>• Lit le texte.<br>• Répond aux questions de compréhension.<br>1. Le téléphone portable.<br>2. A une radio.<br>3. Il permet de téléphoner et de recevoir des appels.<br>• Enrichit son lexique.",
+            mode: "Travail individuel"
+          },
+          {
+            session: "Séance 2",
+            phase: "Pendant la lecture - Compréhension (Je lis et je comprends - suite)",
+            prof: "• Lit le texte, les livrets ouverts.<br>• Invite les apprenants.es à lire individuellement.<br>• Pose les questions de compréhension.<br>4. Comment l'auteure qualifie-t-elle le téléphone portable ?<br>5. Que permettent les appareils mobiles ?<br>6. Quelles sont les fonctions pratiques du téléphone portable ?<br>• Exploite la rubrique « J'enrichis mon lexique ».<br>5. Autonomie: le fait d'être indépendant.<br>6. Nécessiter: exiger, demander.<br>7. Séduire: plaire.<br>8. Répertoriés: inscrits, repérés.",
+            student: "• Ecoute le texte et suit sur le livret.<br>• Lit le texte.<br>• Répond aux questions de compréhension.<br>4. Comme une révolution.<br>5. Ils permettent aussi de recevoir des messages, de joindre des services.<br>6. Certaines fonctions sont pratiques: réveil, calculatrice, agenda pour rappeler les rendez-vous.<br>• Enrichit son lexique.",
+            mode: "Travail collectif"
+          },
+          {
+            session: "Séance 3",
+            phase: "Pendant la lecture - Compréhension (Je lis et j'écris)",
+            prof: "• Invite à lire les passages choisis du texte.<br>• Pose des questions:<br>En langue<br>1. Relève deux verbes du 1er dans le 1er paragraphe.<br>2. Relève un CCL dans le 2e paragraphe.<br>3. Conjugue à l'impératif présent: appeler.<br>4. Transforme en phrase négative: Certaines fonctions sont pratiques.<br>5. Donne l'antonyme de recevoir / à l'intérieur.<br>Production de l'écrit<br>• Pose des questions et écrit les réponses au tableau.<br>1. Donne un autre outil que Les technologies nouvelles ont fait naître.<br>2. Comment est-il ?<br>3. A quoi sert-il ?<br>• Fait découvrir les caractéristiques d'un texte informatif.<br>a. Le texte informatif est un type de texte qui énonce des faits réels, vérifiables. Son but est d'informer.<br>b. Le texte informatif fournit de l'information précise et informe le lecteur.<br>c. Le texte informatif répond à six questions: Qui ? Quoi ? Où ? Quand ? Comment ? Pourquoi ?",
+            student: "• Lit le passage choisi.<br>• Répond aux questions posées.<br>1. Communiquer, fonctionner...<br>2. A la maison/dans sa voiture/dans la rue/sur la plage/à l'intérieur d'un magasin...<br>3. Appelle/Appelons/Appelez.<br>4. Certaines fonctions ne sont pas pratiques.<br>5. Donner/à l'extérieur.<br>• Répond aux questions pour construire le sens.<br>1. L'ordinateur par exemple.<br>2. Il est pratique, utile, important.<br>3. Il sert à saisir des textes, à faire des recherches, à visionner des films, etc.<br>• Découvre les caractéristiques d'un texte informatif.",
+            mode: "Travail individuel"
+          },
+          {
+            session: "Séance 4",
+            phase: "Pendant la lecture - Transfert (Je participe au débat)",
+            prof: "• Fait lire le texte par quelques apprenants.es.<br>• Lit et fait lire questions du débat.<br>À ton avis, quels sont les avantages et les inconvénients du téléphone portable ?<br>• Explicite la question du débat.<br>• Gère le débat.<br>• Encourage les meilleures interventions.<br>• Fait participer tout le groupe.<br>• Aide les apprenants en difficultés pour prendre la parole.<br>• Accepte toutes les idées et les redresser.",
+            student: "• Lit le texte.<br>• Lit la question du débat.<br>• Participe au débat.",
+            mode: "Travail collectif"
+          },
+          {
+            session: "Séance 5",
+            phase: "Après la lecture - Évaluation (Je m'évalue)",
+            prof: "• Fait lire le texte par quelques apprenants.es.<br>• Lit et fait lire les questions de la rubrique « Je m'évalue ».<br>1. Donne deux fonctions du téléphone portable.<br>2. Pourquoi un téléphone portable est-il pratique ?<br>3. À ton avis, qu'est-ce qui a permis au téléphone portable de naître et de se développer ?<br>4. Trouve un mot qui vient de chacun des verbes suivants: téléphoner, communiquer, calculer, appeler.<br>• Pratique la correction.<br>• Fait réagir sur le texte lu en les encourageant à :<br>- Dire ce qu'on a aimé dans ce texte;<br>- Dire ce que l'on n'a pas apprécié dans ce texte.",
+            student: "• Lit le texte à haute voix.<br>• Répond par écrit aux questions de la rubrique « Je m'évalue ».<br>1. Téléphoner et envoyer des messages.<br>2. Son utilisation est facile.<br>3. La science et la technologie.<br>4. Téléphoniste, communication, calcul, appel et tout autre mot juste.<br>• S'auto corrige.<br>• Dit ce qu'il a aimé dans le texte, ce qu'il n'a pas apprécié dans le texte.",
+            mode: "Travail collectif / individuel"
+          }
+        ]
+      },
+      {
+        title: "Le monde menacé par le progrès scientifique et technologique",
+        weeks: "Semaines 14 et 15",
+        duration: "4 séances x 30 min / 2 séances x 25 min",
+        objectives: "Lire un texte argumentatif",
+        steps: [
+          {
+            session: "Séance 1",
+            phase: "Avant la lecture - Observation/Découverte (J'observe et je découvre)",
+            prof: "• Indique la page du livret et demande d'observer le texte et l'image.<br>• Amène à formuler des hypothèses à l'aide des questions:<br>1. Observe l'illustration et le titre. D'après toi, de quoi ce texte va-t-il parler ?<br>2. D'où ce texte est-il tiré ?<br>3. À quelle date ce texte a-t-il été publié ?<br>4. Selon toi, ce texte: va donner des explications; va avancer des arguments.<br>• Transcrit les hypothèses au tableau.",
+            student: "• Observe le texte et l'image.<br>• Formule des hypothèses à l'aide des questions posées.<br>1. Réponses diverses (à accepter).<br>2. Science et Vie Junior.<br>3. En juin 1980.<br>4. Il va avancer des arguments.",
+            mode: "Travail collectif"
+          },
+          {
+            session: "Séance 1 (suite)",
+            phase: "Pendant la lecture - Compréhension (Je lis et je comprends)",
+            prof: "Amorce de la compréhension<br>• Fait lire le texte silencieusement.<br>• Vérifie la compréhension en posant des questions.<br>a. Par quoi le monde est-il menacé ?<br>b. De quelle pollution parle le texte ?<br>c. A cause de quoi le citadin est obligé de fuir la ville ?<br>• Fait affirmer ou infirmer les hypothèses émises.<br>Compréhension<br>• Lit le texte (les livres ouverts).<br>• Invite les apprenants.es à lire individuellement.<br>• Pose les questions de compréhension.<br>1. Qu'est-ce que l'utilisation de nouvelles technologies a fait augmenter ?<br>2. Que permettent les moyens de communication ?<br>3. Comment deviennent les villes avec les progrès techniques et scientifiques ?<br>• Exploite la rubrique « J'enrichis mon lexique »<br>1. menacé: en danger.<br>2. productivité: le rendement.<br>3. planète: un corps qui tourne autour d'une étoile. La Terre est notre planète et son étoile est le Soleil.",
+            student: "• Lit le texte silencieusement.<br>• Répond aux questions de compréhension.<br>a. Par le progrès scientifique et technologique.<br>b. La pollution de l'air.<br>c. A cause de l'atmosphère pesante.<br>• Affirme ou infirme les hypothèses émises.<br>• Ecoute le texte et suit sur le livret.<br>• Lit le texte.<br>• Répond aux questions de compréhension.<br>1. Elle a fait augmenté la productivité ?<br>2. Ils permettent d'être en contact avec nos proches.<br>3. Elles connaissent un entassement qui y rend la vie pénible.<br>• Enrichit son lexique.",
+            mode: "Travail collectif / Individuel"
+          },
+          {
+            session: "Séance 2",
+            phase: "Pendant la lecture - Compréhension (Je lis et je comprends - suite)",
+            prof: "• Lit le texte, les livres ouverts.<br>• Invite les apprenants.es à lire individuellement.<br>• Pose les questions de compréhension.<br>4. Quels sont les problèmes rencontrés par les citadins ?<br>5. Que laisse présager la pollution de l'air ?<br>6. Que doivent faire les dirigeants et pourquoi ?<br>• Exploite la rubrique « J'enrichis mon lexique ».<br>4. bénéfique: favorable et avantageux.<br>5. pesant: qui pèse lourd.<br>6. citadin: habitant d'une grande ville.",
+            student: "• Ecoute le texte et suit sur le livret.<br>• Lit le texte.<br>• Répond aux questions de compréhension.<br>4. Le citadin est obligé de fuir vers la nature et d'affronter les longues files de voitures.<br>5. Elle laisse présager l'apparition d'un nombre incroyable de problèmes climatiques.<br>6. Les dirigeants des pays développés doivent prendre des mesures pour protéger l'environnement.<br>• Enrichit son lexique.",
+            mode: "Travail collectif"
+          },
+          {
+            session: "Séance 3",
+            phase: "Pendant la lecture - Compréhension (Je lis et j'écris)",
+            prof: "• Invite quelques apprenants.es à lire individuellement.<br>• Invite à répondre aux questions de la rubrique « Je lis et j'écris ».<br>1. Qu'est-ce que le citadin doit affronter pour partir à la campagne ?<br>2. Donne un avantage des technologies modernes.<br>3. Donne un inconvénient des technologies modernes.<br>• Pratique une correction collective à chaud.<br>• Lis le texte à la demande.",
+            student: "• Répond aux questions de la rubrique « Je lis et j'écris ».<br>1. Il doit affronter les longues files de voitures qui quittent la ville chaque week-end<br>2. Les moyens de transports modernes / Le développement des moyens de communication<br>3. Les villes connaissent un entassement/la pollution de l'air.<br>• S'auto-corrige sur le champ.",
+            mode: "Travail individuel et collectif"
+          },
+          {
+            session: "Séance 4",
+            phase: "Pendant la lecture - Compréhension (Je lis à haute voix)",
+            prof: "• Invite à lire les passages choisis du texte.<br>• Pose des questions:<br>En langue<br>1. Ecris la phrase en remplaçant les moyens par le moyen. Ainsi, les moyens de communication permettent d'être en contact avec nos proches.<br>2. Conjugue au conditionnel présent: augmenter.<br>3. Donne l'antonyme de: augmenter/rapidement<br>4. Cherche dans le texte une phrase indiquant le cause.<br>Production de l'écrit<br>• Pose des questions et écrit les réponses au tableau.<br>1. Quels sont les moyens de communication que tu connais ?<br>2. Que nous permettent-ils ?<br>• Fait découvrir les caractéristiques d'un texte argumentatif.<br>a. Dans un texte argumentatif, le locuteur expose son opinion sur un sujet et tente de faire partager son point de vue à un interlocuteur. Pour cela, il présente des arguments, c'est-à-dire des idées qui lui permettent de démontrer la justesse de son point de vue.",
+            student: "• Lit le passage choisi.<br>• Répond aux questions posées.<br>1. et, à, etc.<br>2. Vous serez.<br>3. Exemple de réponses: Quel beau jardin! (Dét. exclamatif) - Quel est ton nom? (Dét. interrogatif)<br>4. Fleur: fleuriste, fleurir...<br>• Répond aux questions pour construire le sens.<br>• Découvre les caractéristiques d'un texte argumentatif.",
+            mode: "Travail individuel"
+          },
+          {
+            session: "Séance 5",
+            phase: "Après la lecture - Transfert (Je participe au débat)",
+            prof: "• Fait lire le texte par quelques apprenants.es.<br>• Lit et fait lire la question du débat.<br>À ton avis, les sciences et les technologies ont-elles facilité la vie à l'homme ou non ?<br>• Explicite la question du débat.<br>• Gère le débat.<br>• Encourage les meilleures interventions.<br>• Fait participer tout le groupe.<br>• Aide les apprenants en difficultés pour prendre la parole.<br>• Accepte toutes les idées et les redresser.",
+            student: "• Lit le texte.<br>• Lit la question du débat.<br>• Participe au débat en donnant des informations sur les robots et en argumentant pour ou contre les robots.",
+            mode: "Travail collectif"
+          },
+          {
+            session: "Séance 6",
+            phase: "Après la lecture - Évaluation (Je m'évalue)",
+            prof: "• Fait lire le texte par quelques apprenants.es.<br>• Lit et fait lire les questions de la rubrique « Je m'évalue ».<br>1. Pourquoi les nouveautés technologiques sont-elles nécessaires et bénéfiques pour nous ?<br>2. Pourquoi dit-on que le monde est transformé en un grand village ?<br>3. Qu'est-ce qui rend la vie pénible en ville ?<br>4. Mets la phrase suivante à la forme négative en remplaçant le mot en gras par le mot « anciens » : Les moyens de transports modernes nous permettent de nous déplacer plus rapidement.<br>• Pratique la correction.<br>• Fait réagir sur le texte lu en les encourageant à :<br>- Dire ce qu'on a aimé dans ce texte;<br>- Dire ce que l'on n'a pas apprécié dans ce texte.",
+            student: "• Lit le texte à haute voix.<br>• Répond par écrit aux questions de la rubrique « Je m'évalue ».<br>1. Car elles nous rendent de grands services.<br>2. Parce le téléphone portable, le courrier électronique, et le fax permettent une communication rapide.<br>3. L'encombrement automobile, l'insuffisance de transports en commun, le bruit, la pollution.<br>4. Les moyens de transports anciens ne nous permettent pas de nous déplacer plus rapidement.<br>• S'auto corrige.<br>• Dit ce qu'il a aimé dans le texte, ce qu'il n'a pas apprécié dans le texte.",
+            mode: "Travail collectif / individuel"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: "lexique",
+    title: "Lexique",
+    icon: "fas fa-tag",
+    lessons: [
+      {
+        title: "Les antonymes",
+        weeks: "Semaines 23 et 24",
+        duration: "2 séances x 25 min",
+        objectives: "Reconnaître la notion d'antonymie. Savoir utiliser des antonymes.",
+        steps: [
+          {
+            session: "Séance 1",
+            phase: "Évaluation diagnostique (Ce que je sais)",
+            prof: "• Demande d'ouvrir le livret page 80.<br>• Lit et fait lire la question de la rubrique « Ce que je sais ».<br>Trouve les mots qui vont ensemble.<br>Fort-blanc-sale-noir-long-propre-court-faible.<br>• Pratiquer la correction.",
+            student: "• Ouvre le livret page 80.<br>• Lit la question de la rubrique « Ce que je sais ».<br>Trouve les mots qui vont ensemble.<br>(fort - faible), (blanc - noir), (sale - propre), (long - court)<br>• Pratiquer l'auto-correction.",
+            mode: "Travail collectif"
+          },
+          {
+            session: "Séance 1 (suite)",
+            phase: "Observation/Découverte (J'observe et je découvre)",
+            prof: "• Fait observer le corpus.<br>• Lit et fait lire le corpus.<br>• Pose des questions d'aide à la compréhension.<br>1. Que fait Salim ?<br>2. Comment est-il ?<br>3. Comment s'appelle son petit frère ?",
+            student: "• Observe le corpus.<br>• Lit le corpus.<br>• Répond aux questions :<br>1. Il branche et débranche sa tablette.<br>2. Il est mécontent et insatisfait.<br>3. Karim.",
+            mode: "Travail collectif"
+          },
+          {
+            session: "Séance 1 (suite)",
+            phase: "Compréhension (Je manipule et je réfléchis)",
+            prof: "• Fait observer de nouveau le corpus.<br>• Pose les questions suivantes :<br>1. Observe la nature des mots en rouge. Que constates-tu ?<br>2. Quels sont ceux qui vont ensemble ?<br>3. Dans la première phrase, les mots ont-ils le même sens ?<br>4. Quel est le mot contraire de: a. sur... b. monter -> ...<br>5. Quels préfixes a-t-on placés devant « content » et « satisfait » ?<br>6. Comment appelle-t-on les mots « content » et « mécontent » ?<br>• Aide à réfléchir et à manipuler.<br>• Fais participer tout le groupe.<br>• Procède aux corrections constatées.",
+            student: "• Observe de nouveau le corpus.<br>• Répond aux questions :<br>1. Il y a des verbes, des adjectifs, des adverbes.<br>2. branche/débranche, Sous/sur, monte/descend.<br>3. Non.<br>4. sur/sous b. monter/descendre<br>5. Les préfixes-in.<br>6. Des antonymes.<br>• Réfléchit et manipule.<br>• Participe dans le groupe.<br>• S'auto-corrige.",
+            mode: "Travail collectif"
+          },
+          {
+            session: "Séance 1 (suite)",
+            phase: "Conceptualisation (Je construis la règle)",
+            prof: "• Fait un rappel de ce qui a été vu sur les antonymes.<br>• Pose des questions de compréhension.<br>• Fait participer à la construction de carte mentale de la règle.<br>• Fait lire la rubrique « Je construis ».",
+            student: "• Se rappelle de ce qui a été vu sur les antonymes.<br>• Répond aux questions posées.<br>• Participe à la construction de carte mentale de la règle.<br>• Lit la rubrique « Je construis ».",
+            mode: "Travail collectif"
+          },
+          {
+            session: "Séance 2",
+            phase: "Application/Transfert (Je m'entraîne)",
+            prof: "• Amène, à partir des activités de la rubrique « Je m'entraîne » à :<br>1. Souligner les antonymes dans les phrases.<br>2. Regrouper les antonymes deux à deux.<br>3. Utilise le préfixe qui convient pour former l'antonyme de chaque mot.<br>4. Trouver l'antonyme de chaque mot.<br>• Pratique la correction collective.<br>• Il invite les apprenants à s'auto-corriger.",
+            student: "• Réalise les activités de la rubrique « Je m'entraîne ».<br>1. un début/une fin Perdu/retrouvée; courts/longs; près/loin; fermée/ouverte.<br>2. vivant/mort; blanc/noire; modeste/orgueilleux<br>3. Illogique, incertain, malhonnête, disqualifier, impropre, illisible, incapable, décharger.<br>4. ouvrir/fermer, former/déformer, au-dessus/au-dessous, basse/haute.<br>• Participe à la correction collective.<br>• S'auto-corrige.",
+            mode: "Travail individuel"
+          },
+          {
+            session: "Séance 2 (suite)",
+            phase: "Évaluation/Soutien (Je m'évalue)",
+            prof: "• Amène, à partir des activités de la rubrique « Je m'évalue » à :<br>1. Souligner les antonymes dans chaque phrase.<br>2. Trouver un antonyme pour chaque mot.<br>3. Barre le mot intrus dans chaque liste.<br>• Pratique la correction collective.<br>• Invite les apprenants à s'auto-corriger.<br>• Note les résultats de l'évaluation sur une grille.",
+            student: "• Réalise les activités de la rubrique.<br>1. faciles/difficiles, premiers/derniers, habiles/malhabiles, compréhensibles/incompréhensibles.<br>2. vendre/acheter, gros/maigre, long/court, derrière/devant.<br>3. malade, décorer, intérêt.<br>• Participe à la correction collective.<br>• S'auto-corrige.<br>• S'auto-évalue.",
+            mode: "Travail individuel"
+          }
+        ]
+      },
+      {
+        title: "Lexique thématique des sciences et des technologies",
+        weeks: "Semaines 14 et 15",
+        duration: "2 séances x 25 min",
+        objectives: "Savoir utiliser un lexique thématique relatif aux sciences et aux technologies.",
+        steps: [
+          {
+            session: "Séance 1",
+            phase: "Observation/Découverte (J'observe et je découvre)",
+            prof: "• Fait observer le corpus et l'image.<br>• Lit et fait lire le corpus.<br>• Pose des questions d'aide à la compréhension.<br>1. Observe l'image. Que remarques-tu ?<br>2. Lis le titre quels sont les mots qui vont ensemble.<br>• Fait observer de nouveau le corpus.<br>• Pose les questions suivantes:<br>1. De quoi parle le texte ?<br>2. Qu'est-ce qu'une science ?<br>3. Qu'est-ce qu'une technique ?<br>4. Pourquoi on utilise le terme de « technologie » ?<br>5. Quels sont les domaines où la technologie est utilisée ?<br>6. D'où vient la technologie ?<br>• Aide à réfléchir et à manipuler.<br>• Fais participer tout le groupe.<br>• Procède aux corrections constatées.",
+            student: "• Observe le corpus.<br>• Lit le corpus.<br>• Répond aux questions :<br>1. Accepter toutes les réponses données.<br>2. La science et la technologie.<br>• Observe de nouveau le corpus.<br>• Répond aux questions:<br>1. De la science et de la technologie.<br>2. La science est une entreprise de recherche qui vise la connaissance.<br>3. La technique est une activité de fabrication et de transformation.<br>4. Pour parler de certains domaines techniques spécifiques.<br>5. La santé, le transport, la communication, les loisirs, la recherche, les lieux de production, etc...<br>6. Elle vient de la science.<br>• Réfléchit et manipule.<br>• Participe dans le groupe.<br>• S'auto-corrige.",
+            mode: "Travail collectif"
+          },
+          {
+            session: "Séance 1 (suite)",
+            phase: "Compréhension (Je retiens)",
+            prof: "• Lit et fait lire la rubrique « Je retiens ».<br>• Explique le lexique difficile.<br>• Fait exploiter le lexique expliqué dans des phrases.",
+            student: "• Lit la rubrique « Je retiens ».<br>• Assimile le lexique expliqué.<br>• Exploite le lexique expliqué dans des phrases.",
+            mode: "Travail collectif"
+          },
+          {
+            session: "Séance 2",
+            phase: "Application/Transfert (Je m'entraîne)",
+            prof: "• Amène, à partir des activités de la rubrique « Je m'entraîne » à :<br>1. Ranger des mots désignant quatre objets issus de la technologie actuelle dans le tableau.<br>2. Relier chaque mot à sa définition.<br>3. Trouver le mot évoqué par chaque liste.<br>avion robot minier fusée ordinateur<br>• Pratique la correction collective.<br>• Invite les apprenants.es à s'auto-corriger.",
+            student: "• Réalise les activités de la rubrique « Je m'entraîne ».<br>1. Espace / fusée, Usine / ordinateur, atmosphère terrestre / avion Sous-sol/robot minier.<br>2. Science / ensemble de connaissances et de travaux étudiant des faits vérifiables. Tablette / ordinateur à écran tactile, dépourvu de clavier ou de souris. Invention/action d'inventer. Laboratoire / lieu de recherche où les scientifiques mènent leurs expériences. Savant / qui a accumulé de nombreuses connaissances scientifiques. Inventeur / qui imagine et met au point de nouvelles techniques. Robotique / ensemble des techniques de conception et de réalisation des robots.<br>3. a. Téléphone portable b. Internet c. Télévision.<br>• Participe à la correction collective.<br>• S'auto-corrige.",
+            mode: "Travail individuel"
+          },
+          {
+            session: "Séance 2 (suite)",
+            phase: "Évaluation/Soutien (Je m'évalue)",
+            prof: "• Amène, à partir des activités de la rubrique « Je m'évalue » à :<br>1. Entourer les mots ou les expressions qui concernent les technologies de l'information.<br>2. Barrer l'intrus dans chaque liste.<br>• Pratique la correction collective.<br>• Invite les apprenants.es à s'auto-corriger.<br>• Note les résultats de l'évaluation sur une grille.",
+            student: "• Réalise les activités de la rubrique.<br>1. satellite - téléphone portable -caméra - vidéoconférence -Internet.<br>2. a. vélo b. promenade c. baguette d. raquette<br>• Participe à la correction collective.<br>• S'auto-corrige.<br>• S'auto-évalue.",
+            mode: "Travail individuel"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: "grammaire",
+    title: "Grammaire",
+    icon: "fas fa-pen-nib",
+    lessons: [
+      {
+        title: "La négation",
+        weeks: "Semaines 12 et 13",
+        duration: "2 séances x 30 min",
+        objectives: "Reconnaître une phrase à la forme négative. Transformer une phrase affirmative en phrase négative.",
+        steps: [
+          {
+            session: "Séance 1",
+            phase: "Evaluation diagnostique (Ce que je sais)",
+            prof: "• Demande d'ouvrir le livret page 81.<br>• Lit et fait lire la question de la rubrique « Ce que je sais ».<br>• Coche les groupes de mots qui forment une phrase.<br>L'ordinateur est éteint.<br>Le TGV roule à 400 km à l'heure.<br>Le soleil se lève. La fusée se dirige vers la lune.<br>• Pratiquer la correction.",
+            student: "• Ouvre le livret page 81.<br>• Lit la question de la rubrique « Ce que je sais ».<br>• Pratiquer l'auto-correction.",
+            mode: "Travail collectif"
+          },
+          {
+            session: "Séance 1 (suite)",
+            phase: "Observation/Découverte (J'observe et je découvre)",
+            prof: "• Fait observer le corpus.<br>• Lit et fait lire le corpus.<br>• Pose des questions d'aide à la compréhension.<br>1. De quel appareil s'agit-il ?<br>2. Quel est l'ordinateur qui ne fonctionne pas ?<br>3. Pourquoi Mina ne verra plus son ordinateur ?",
+            student: "• Observe le corpus.<br>• Lit le corpus.<br>• Répond aux questions :<br>1. Un ordinateur.<br>2. Celui de Mina.<br>3. Car elle aura une tablette.",
+            mode: "Travail collectif",
+            corpus: "L'ordinateur fonctionne.<br>L'ordinateur ne fonctionne pas.<br>Mina verra son ordinateur.<br>Elle ne le verra plus."
+          },
+          {
+            session: "Séance 1 (suite)",
+            phase: "Compréhension (Je manipule et je réfléchis)",
+            prof: "• Fait observer de nouveau le corpus.<br>• Pose les questions suivantes :<br>1. Observe la première phrase. Comment l'appelle-t-on?<br>2. Compare les première et deuxième phrases. Relève ce qui a changé.<br>3. Dans quelle phrase le fait de « fonctionner » n'existe pas ?<br>4. Quels sont les mots utilisés pour dire que ce fait ne s'est pas déroulé ?<br>5. Quelle est la place des mots exprimant la négation dans la deuxième phrase ?<br>6. Relève les mots utilisés pour indiquer la négation dans les autres phrases.<br>7. Comment appelle-t-on ces phrases ?<br>• Aide à réfléchir et à manipuler.<br>• Fait participer tout le groupe.<br>• Procède aux corrections constatées.",
+            student: "• Observe de nouveau le corpus.<br>• Répond aux questions :<br>1. Une phrase affirmative.<br>2. Fonctionne se trouve entre ne et pas.<br>3. Dans la deuxième phrase.<br>4. Ne et pas.<br>5. Ils encadrent le verbe.<br>6. Ne et jamais, ne plus.<br>7. Des phrases négatives.<br>• Réfléchit et à manipule.<br>• Participe dans le groupe.<br>• S'auto-corrige.",
+            mode: "Travail collectif"
+          },
+          {
+            session: "Séance 1 (suite)",
+            phase: "Conceptualisation (Je construis la règle)",
+            prof: "• Fait un rappel de ce qui a été vu sur la négation.<br>• Pose des questions de compréhension.<br>• Fait participer à la construction de carte mentale de la règle.<br>• Fait lire la rubrique « Je construis ».",
+            student: "• Se rappelle de ce qui a été vu sur la négation.<br>• Répond aux questions posées.<br>• Participe à la construction de carte mentale de la règle.<br>• Lit la rubrique « Je construis ».",
+            mode: "Travail collectif"
+          },
+          {
+            session: "Séance 2",
+            phase: "Application/Transfert (Je m'entraîne)",
+            prof: "• Amène, à partir des activités de la rubrique « Je m'entraîne » à :<br>1. Souligner les phrases négatives.<br>2. Transformer ces phrases affirmatives en phrases négatives.<br>3. Entourer les mots de la négation dans chaque phrase.<br>• Pratique la correction collective.<br>• Invite les apprenants.es à s'auto-corriger.",
+            student: "• Réalise les activités de la rubrique « Je m'entraîne ».<br>1. Les phrases a, b, c, d, e.<br>2. a.Le train ne roule pas à grande vitesse. b. Ces téléphones portables ne coûtent pas cher. c. Mon cousin ne voyage jamais seul. d. Les ouvriers ne vont plus à l'usine. e. Il n'a pas entendu des informations à la radio.<br>3. ne... personne, ne .... jamais, ne.... rien, ne.... jamais.<br>• Participe à la correction collective.<br>• S'auto-corrige.",
+            mode: "Travail individuel"
+          },
+          {
+            session: "Séance 2 (suite)",
+            phase: "Évaluation/Soutien (Je m'évalue)",
+            prof: "• Amène, à partir des activités de la rubrique « Je m'évalue » à :<br>1. Souligner les phrases négatives.<br>2. Transformer des phrases en phrases négatives.<br>3. Entourer les mots de la négation dans chaque phrase.<br>• Pratique la correction collective.<br>• Invite les apprenants.es à s'auto-corriger.<br>• Note les résultats de l'évaluation sur une grille.",
+            student: "• Réalise les activités de la rubrique.<br>1. Les phrases b, c, d.<br>2.a. La maman ne prépare pas une omelette. b. Il ne va pas en ville chaque dimanche. c. Mon frère n'aime pas les bandes dessinées.<br>3. ne... plus / ne.... rien / ne .... jamais / ne.... pas / ne.... plus.<br>• Participe à la correction collective.<br>• S'auto-corrige.<br>• S'auto-évalue.",
+            mode: "Travail individuel"
+          }
+        ]
+      },
+      {
+        title: "La cause",
+        weeks: "Semaines 14 et 15",
+        duration: "2 séances x 30 min",
+        objectives: "Reconnaître quelques expressions de la cause. Savoir les employer.",
+        steps: [
+          {
+            session: "Séance 1",
+            phase: "Evaluation diagnostique (Ce que je sais)",
+            prof: "• Demande d'ouvrir le livret page ...<br>• Lit et fait lire la question de la rubrique « Ce que je sais ».<br>Donne la réponse à la question posée.<br>Pourquoi Rania ne vient-elle pas à l'école ?<br>• Pratiquer la correction.",
+            student: "• Ouvre le livret page ...<br>• Lit la question de la rubrique « Ce que je sais ».<br>Rania ne vient-elle pas à l'école car elle est malade ou parce qu'elle malade.<br>• Pratiquer l'auto-correction.",
+            mode: "Travail collectif"
+          },
+          {
+            session: "Séance 1 (suite)",
+            phase: "Observation/Découverte (J'observe et je découvre)",
+            prof: "• Fait observer le corpus.<br>• Lit et fait lire le corpus.<br>• Pose des questions d'aide à la compréhension.<br>1. De quel moyen de transport s'agit-il ?<br>2. De quel pays s'agit-il ?<br>3. Comment est Al Boraq ?<br>4. De quelles villes s'agit-il ?",
+            student: "• Observe le corpus.<br>• Lit le corpus.<br>• Répond aux questions:<br>1. Le train Al Boraq.<br>2. Le Maroc<br>3. Il est le plus raide de tous les trains;<br>4. Casablanca, Tanger, Marrakech, Agadir.",
+            mode: "Travail collectif",
+            corpus: "Le train Al Boraq est célèbre au Maroc car c'est le plus rapide de tous les trains. Comme il est très rapide, il relie Tanger à Casablanca en 2 h 10. Le voyage est agréable grâce au confort offert. Les passagers ne peuvent pas voyager à cause de la grève."
+          },
+          {
+            session: "Séance 1 (suite)",
+            phase: "Compréhension (Je manipule et je réfléchis)",
+            prof: "• Fait observer de nouveau le corpus.<br>• Pose les questions suivantes :<br>1. Lis les mots en couleur. À quoi répondent ces expressions ?<br>2. Que veut-on savoir en posant ces questions ?<br>3. D'après la 1re phrase, pourquoi le train Al Boraq est-il célèbre au Maroc ?<br>4. Dans la 2e phrase, où est placé le mot « comme » ?<br>5. Dans la 3e phrase, la cause est-elle positive ou négative ?<br>6. Connais-tu d'autres expressions pour exprimer la cause ? Lesquelles ?<br>• Aide à réfléchir et à manipuler.<br>• Fait participer tout le groupe.<br>• Procède aux corrections constatées.",
+            student: "• Observe de nouveau le corpus.<br>• Répond aux questions :<br>1. Elles répondent à des motifs.<br>2. La cause.<br>3. Car il est le plus rapide des trains.<br>4. En début de phrase.<br>5. Elle est positive.<br>6. puisque / à cause de / par manque de faute.<br>• Réfléchit et à manipule.<br>• Participe dans le groupe.<br>• S'auto-corrige.",
+            mode: "Travail collectif"
+          },
+          {
+            session: "Séance 1 (suite)",
+            phase: "Conceptualisation (Je construis la règle)",
+            prof: "• Fait un rappel de ce qui a été vu sur la cause.<br>• Pose des questions de compréhension.<br>• Fait participer à la construction de carte mentale de la règle.<br>• Fait lire la rubrique « Je construis ».",
+            student: "• Se rappelle de ce qui a été vu.<br>• Répond aux questions posées.<br>• Participe à la construction de carte mentale de la règle.<br>• Lit la rubrique « Je construis ».",
+            mode: "Travail collectif"
+          },
+          {
+            session: "Séance 2",
+            phase: "Application / Transfert (Je m'entraîne)",
+            prof: "• Amène, à partir des activités de la rubrique « Je m'entraîne » à :<br>1. Relever l'expression de la cause dans chaque phrase.<br>2. Transformer des phrases en employant « grâce à » ou « à cause de ».<br>• Pratique la correction collective.<br>• Invite les apprenants à s'auto-corriger.",
+            student: "• Réalise les activités de la rubrique « Je m'entraîne ».<br>1. a. Comme. b. car c. parce que d. par manque. e. grâce à.<br>2. a. A cause de sa blessure, il ne peut pas sortir. b. A cause de son manque de moyens, il ne peut pas voyager en TGV. c. Grace à l'argent que j'ai, je peux m'acheter un billet aller-retour.<br>• Participe à la correction collective.<br>• S'auto-corrige.",
+            mode: "Travail individuel"
+          },
+          {
+            session: "Séance 2 (suite)",
+            phase: "Application / Transfert (Je m'évalue)",
+            prof: "• Amène, à partir des activités de la rubrique « Je m'évalue » :<br>1. Compléter par une expression de cause.<br>2. Transformer des phrases en employant « grâce à » ou « à cause de ».<br>3. Écrire une phrase avec des expressions de cause données.<br>• Pratique la correction collective.<br>• Invite les apprenants à s'auto-corriger.<br>Note les résultats de l'évaluation sur une grille.",
+            student: "• Réalise les activités de la rubrique.<br>1. a. car, parce que. b. car, parce que. c. grâce à. d. Comme. e. à cause de.<br>2. a. A cause de sa fatigue, il ne peut pas aller... b. Elle a réussi son examen grâce à son travail.<br>3. Toute phrase juste répondant à la consigne.<br>• Participe à la correction collective.<br>• S'auto-corrige.<br>• S'auto-évalue.",
+            mode: "Travail individuel"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: "conjugaison",
+    title: "Conjugaison",
+    icon: "fas fa-sync",
+    lessons: [
+      {
+        title: "L'impératif présent des verbes du 1er groupe",
+        weeks: "Semaines 12 et 13",
+        duration: "2 séances x 30 min",
+        objectives: "Savoir conjuguer à l'impératif présent les verbes du 1er groupe.",
+        steps: [
+          {
+            session: "Séance 1",
+            phase: "Evaluation diagnostique (Ce que je sais)",
+            prof: "• Demande d'ouvrir le livret page 80.<br>• Lit et fait lire la question de la rubrique « Ce que je sais ».<br>1. Conjugue le verbe « trouver » au futur à toutes les personnes.<br>2. Conjugue le verbe « garder » au passé composé à toutes les personnes.<br>• Pratiquer la correction.",
+            student: "• Ouvre le livret page 80.<br>• Lit la question de la rubrique « Ce que je sais ».<br>1. Je trouverai - Tu trouveras - Il/elle trouvera - Nous trouverons - Vous trouverez - Ils/elles trouveront.<br>2. J'ai gardé - Tu as gardé - Il/elle a gardé - Nous avons gardé - Vous avez gardé - Ils/elles ont gardé.<br>• Pratiquer l'auto-correction.",
+            mode: "Travail collectif"
+          },
+          {
+            session: "Séance 1 (suite)",
+            phase: "Observation/Découverte (J'observe et je découvre)",
+            prof: "• Fait observer le corpus.<br>• Lit et fait lire le corpus.<br>• Pose des questions d'aide à la compréhension.<br>1. Les conseils concernent quel appareil ?<br>2. Pour quelles raisons doit-on utiliser cet appareil ?<br>3. Que doit-on éviter.",
+            student: "• Observe le corpus.<br>• Lit le corpus.<br>• Répond aux questions :<br>1. Le téléphone portable.<br>2. Pour des raisons normales.<br>3. Évitons de mettre des écouteurs en permanence.",
+            mode: "Travail collectif",
+            corpus: "Utilise ton téléphone modérément. Contrôlons notre temps d'écran. Laissez vos tablettes."
+          },
+          {
+            session: "Séance 1 (suite)",
+            phase: "Compréhension (Je manipule et je réfléchis)",
+            prof: "• Fait observer de nouveau le corpus.<br>• Pose les questions suivantes :<br>1. Lis les phrases.<br>2. Quel est leur type ?<br>3. Qu'expriment-elles ?<br>4. Donne L'infinitif des verbes en couleur.<br>5. À quelles personnes sont-ils conjugués ?<br>• Aide à réfléchir et à manipuler.<br>• Fait participer tout le groupe.<br>• Procède aux corrections constatées.",
+            student: "• Observe de nouveau le corpus.<br>• Répond aux questions:<br>1. Lit les phrases.<br>2. Des phrases impératives.<br>3. Des conseils, des ordres, des interdictions.<br>4. Utiliser/Contrôler/Laisser/ Eviter/Prêter<br>5. 2 PS/1 PP/2 PP<br>• Réfléchit et à manipule.<br>• Participe dans le groupe.<br>• S'auto-corrige.",
+            mode: "Travail collectif"
+          },
+          {
+            session: "Séance 1 (suite)",
+            phase: "Conceptualisation (Je construis la règle)",
+            prof: "• Fait un rappel de ce qui a été vu sur l'impératif présent.<br>• Pose des questions de compréhension.<br>• Fait participer à la construction de carte mentale de la règle.<br>• Fait lire la rubrique « Je construis ».",
+            student: "• Se rappelle de ce qui a été vu sur les antonymes.<br>• Répond aux questions posées.<br>• Participe à la construction de carte mentale de la règle.<br>• Lit la rubrique « Je construis ».",
+            mode: "Travail collectif"
+          },
+          {
+            session: "Séance 2",
+            phase: "Application/Transfert (Je m'entraîne)",
+            prof: "• Amène, à partir des activités de la rubrique « Je m'entraîne » à :<br>1. Souligner les verbes à l'impératif présent puis indiquer leur infinitif et la personne à laquelle chacun est conjugué.<br>2. Conjuguer les verbes donnés à l'impératif présent à toutes les personnes possibles.<br>3. Relèver le verbe intrus dans chaque suite.<br>• Pratique la correction collective.<br>• Invite les apprenants.es à s'auto-corriger.",
+            student: "• Réalise les activités de la rubrique « Je m'entraîne ».<br>1. Souligner les verbes.<br>a. Ne joue plus avec ton téléphone. Jouer/ 2e PS<br>b. Débranche ton ordinateur! Débrancher/2e PS<br>c. Communiquons quand il le faut. Communiquer/1er PP<br>d. Changez votre tablette. Changer/2ePP<br>e. Rangez vos CD dans cette armoire.<br>2. Passe/passons/passez<br>Porte/portons/portez<br>3. Je parle/chantez!<br>• Participe à la correction collective.<br>• S'auto-corrige.",
+            mode: "Travail individuel"
+          },
+          {
+            session: "Séance 2 (suite)",
+            phase: "Évaluation/Soutien (Je m'évalue)",
+            prof: "• Amène, à partir des activités de la rubrique « Je m'évalue » à :<br>1. Souligner chaque verbe à l'impératif présent puis indiquer son infinitif et la personne à laquelle il est conjugué.<br>2. Conjuguer les verbes donnés à l'impératif présent.<br>3. Écrire une phrase à l'impératif présent à la 2e pers. du pluriel.<br>• Pratique la correction collective.<br>Invite les apprenants à s'auto-corriger.<br>• Note les résultats de l'évaluation sur une grille.",
+            student: "• Réalise les activités de la rubrique.<br>1. Souligner:<br>a. Ne parle plus au téléphone portable.<br>b. Branchez vos tablettes et commencez<br>c. Cherche le numéro à contacter.<br>d. Écoutez votre musique préférée sans écouteurs.<br>e. Contrôlez votre ordinateur de temps à autre.<br>f. Cherchons les sujets proposés sur Internet.<br>• Participe à la correction collective.<br>• S'auto-corrige.<br>• S'auto-évalue.",
+            mode: "Travail individuel"
+          }
+        ]
+      },
+      {
+        title: "Le conditionnel présent des verbes usuels des 1er et 2e groupes",
+        weeks: "Semaines 14 et 15",
+        duration: "2 séances x 30 min",
+        objectives: "Savoir conjuguer des verbes usuels des 1er et 2e groupes au conditionnel présent.",
+        steps: [
+          {
+            session: "Séance 1",
+            phase: "Evaluation diagnostique (Ce que je sais)",
+            prof: "• Demande d'ouvrir le livret à la page .......<br>• Lit et fait lire la rubrique « Ce que je sais ».<br>1. Conjugue le verbe « parler » à l'impératif présent.<br>2. Donne deux verbes du 2e groupe.<br>• Pratique la correction.",
+            student: "• Ouvre le livre à la page .........<br>• Lit la question de la rubrique « ce que je sais ».<br>• Répond oralement aux questions.<br>• Pratique l'auto-correction.",
+            mode: "Travail collectif"
+          },
+          {
+            session: "Séance 1 (suite)",
+            phase: "Observation/Découverte (J'observe et je découvre)",
+            prof: "• Fait observer le corpus.<br>• Lit et fait lire le corpus.<br>Pose des questions d'aide à la compréhension.<br>1. Observe le texte. Qui parle ?<br>2. De quoi ?<br>3. Qu'aimerait faire Nadia ?",
+            student: "• Observe le corpus.<br>• Lit le corpus.<br>• Répond aux questions:<br>1. Dania et sa cousine.<br>2. Du voyage par train.<br>3. Elle aimerait bien voyager avec sa cousine.",
+            mode: "Travail collectif",
+            corpus: "J'aimerais voyager. Tu finirais ton travail. Nous accepterions l'invitation."
+          },
+          {
+            session: "Séance 1 (suite)",
+            phase: "Compréhension (Je manipule et je réfléchis)",
+            prof: "• Fait observer de nouveau le corpus.<br>Pose les questions suivantes :<br>1. Donne l'infinitif et le groupe de chacun des verbes.<br>2. À quelles personnes sont-ils conjugués.<br>3. Repère les terminaisons des verbes. Quel temps de l'indicatif présente les mêmes terminaisons ?<br>• Aide à réfléchir et à manipuler.<br>• Fais participer tout le groupe.<br>• Procède aux corrections constatées.",
+            student: "• Observe de nouveau le corpus.<br>• Répond aux questions :<br>1. voyager, aimer, accepter (1er G), finir (2e G).<br>2. Première et deuxième personne du singulier/deuxième personne du pluriel.<br>3. -ais, -ais, -iez / l'imparfait de l'indicatif.<br>• Réfléchit et à manipule.<br>• Participe dans le groupe.<br>• S'auto-corrige.",
+            mode: "Travail collectif"
+          },
+          {
+            session: "Séance 1 (suite)",
+            phase: "Conceptualisation (Je construis la règle)",
+            prof: "• Fait un rappel de ce qui a été vu sur le conditionnel présent.<br>• Pose des questions de compréhension.<br>• Fait participer à la construction de carte mentale de la règle.<br>• Fait lire la rubrique « Je construis ».",
+            student: "• Se rappelle de ce qui a été vu.<br>• Répond aux questions posées.<br>• Participe à la construction de carte mentale de la règle.<br>• Lit la rubrique « Je construis ».",
+            mode: "Travail collectif"
+          },
+          {
+            session: "Séance 2",
+            phase: "Application/Transfert (Je m'entraîne)",
+            prof: "• Amène, à partir des activités de la rubrique « Je m'entraîne » à :<br>1. Souligner Souligner des verbes au conditionnel présent.<br>2. Conjuguer des verbes au conditionnel présent à la personne demandée.<br>3. Compléter un tableau en mettant des verbes au CP.<br>• Pratique la correction collective.<br>Invite les apprenants à s'auto-corriger.",
+            student: "• Réalise les activités de la rubrique « Je m'entraîne ».<br>1. a. arriverais / b. annulerait / c. Choisiriez / d. Accepteriez / e. gagnerait<br>2. a. finiriez / b. applaudirions / c. choisiriez / d. ralentirais / e. fourniriez.<br>3. Tu grandirais / vous grandiriez / Nous grandirions<br>Tu laverais / vous laveriez / Nous laverions.<br>• S'auto-corrige.",
+            mode: "Travail individuel"
+          },
+          {
+            session: "Séance 2 (suite)",
+            phase: "Évaluation/Soutien (Je m'évalue)",
+            prof: "• Amène, à partir des activités de la rubrique « Je m'évalue » à :<br>1. Souligner les verbes au conditionnel présent.<br>2. Compléter un tableau en mettant des verbes au conditionnel présent.<br>3. Écrire deux phrases en utilisant le conditionnel présent.<br>• Pratique la correction collective.<br>• Invite les apprenants.es à s'auto-corriger.<br>Note les résultats de l'évaluation sur une grille.",
+            student: "• Réalise les activités de la rubrique :<br>1. a. arriverais / b. désiriez, annulerait / c. Rougiriez e. il remporterait<br>2. je punirais / ils, elles puniraient / vous puniriez<br>je rougirais / ils, elles rougiraient / vous rougiriez<br>je punirais / ils, elles puniraient / vous puniriez<br>je chanterais / ils, elles chanteraient / vous chanteriez<br>Je monterais / ils, elles monteraient / monteriez<br>3. Accepter toute phrase répondant à la consigne.<br>• Participe à la correction collective.<br>• S'auto-corrige.<br>• S'auto-évalue.",
+            mode: "Travail individuel"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: "orthographe",
+    title: "Orthographe",
+    icon: "fas fa-spell-check",
+    lessons: [
+      {
+        title: "Les mots terminés par euil/euille/eil/eille/ail/aille",
+        weeks: "Semaines 12 et 13",
+        duration: "2 séances x 35 min",
+        objectives: "Orthographier correctement des mots terminés par euil/euille/eil/eille/ail/aille.",
+        steps: [
+          {
+            session: "Séance 1",
+            phase: "Evaluation diagnostique (Ce que je sais)",
+            prof: "• Demande d'ouvrir le livret page<br>• Lit et fait lire la question de la rubrique « Ce que je sais ».<br>Complète avec « un » ou « une ».<br>boire avec............ paille /...........chandail<br>• Pratique la correction.",
+            student: "• Ouvre le livret page<br>• Lit la question de la rubrique « Ce que je sais ».<br>boire avec une paille / un chandail<br>• Pratique l'auto-correction.",
+            mode: "Travail collectif"
+          },
+          {
+            session: "Séance 1 (suite)",
+            phase: "Observation / Découverte (J'observe et je découvre)",
+            prof: "• Fait observer le corpus.<br>• Lit et fait lire le corpus.<br>• Pose des questions d'aide à la compréhension.<br>1. Où se trouve Salim ?<br>2. Quel mot faut-il chercher?<br>3. De quoi est remplie la bouteille ?<br>4. Qu'a placé le fermier?",
+            student: "• Observe le corpus.<br>• Lit le corpus.<br>• Répond aux questions :<br>1. Sur le seuil de la maison.<br>2. Le mot feuille.<br>3. Elle est remplie d'huile.<br>4. Un épouvantail.",
+            mode: "Travail collectif",
+            corpus: "Salim est sur le seuil. Il cherche une feuille. La bouteille est pleine. Un épouvantail dans le champ."
+          },
+          {
+            session: "Séance 1 (suite)",
+            phase: "Compréhension (Je manipule et je réfléchis)",
+            prof: "• Fait observer de nouveau le corpus.<br>• Pose les questions suivantes :<br>1. Par quoi se terminent les mots « seuil » et « feuille » ?<br>2. Quel est leur genre ?<br>3. Par quoi se terminent les mots « réveil » et « bouteille » ?<br>4. Quel est leur genre ?<br>5. Par quoi se terminent « épouvantail » et « volaille » ?<br>6. Quel est leur genre ?<br>• Aide à réfléchir et à manipuler.<br>• Fais participer tout le groupe.<br>• Procède aux corrections constatées.",
+            student: "• Observe de nouveau le corpus.<br>• Répond aux questions.<br>1. euil et euille.<br>2. Masculin et féminin.<br>3. eil et eille<br>4. Masculin et féminin<br>5. ail et aille<br>6. Masculin et féminin<br>• Réfléchit et manipule.<br>• Participe dans le groupe.<br>• S'auto-corrige.",
+            mode: "Travail collectif"
+          },
+          {
+            session: "Séance 1 (suite)",
+            phase: "Conceptualisation (Je construis la règle)",
+            prof: "• Fait un rappel de ce qui a été vu sur les mots terminés par euil/euille/eil/eille/ail/aille.<br>• Pose des questions de compréhension.<br>• Fait participer à la construction de carte mentale de la règle.<br>• Fait lire la rubrique « Je construis ».",
+            student: "• Se rappelle de ce qui a été vu.<br>• Répond aux questions posées.<br>• Participe à la construction de carte mentale de la règle.<br>• Lit la rubrique « Je construis ».",
+            mode: "Travail collectif"
+          },
+          {
+            session: "Séance 2",
+            phase: "Application/Transfert (Je m'entraîne)",
+            prof: "• Amène, à partir des activités de la rubrique « Je m'entraîne » à :<br>1. Compléter chaque mot avec-euil ou -euille.<br>2. Compléter chaque mot avec -eil ou -eille.<br>3. Compléter chaque mot avec -ail ou -aille.<br>• Pratique la correction collective.<br>Invite les apprenants à s'auto-corriger.",
+            student: "• Réalise les activités de la rubrique « Je m'entraîne ».<br>1. le chevreuil/le deuil/un fauteuil/une feuille<br>2. un appareil/le soleil/la vieille/un orteil/une bouteille<br>3. un bétail/un chandail/une trouvaille/le gouvernail/une volaille.<br>• Participe à la correction collective.<br>• S'auto-corrige.",
+            mode: "Travail individuel"
+          },
+          {
+            session: "Séance 2 (suite)",
+            phase: "Évaluation / Soutien (Je m'évalue)",
+            prof: "• Amène, à partir des activités de la rubrique « Je m'entraîne » à :<br>1. Compléter chaque mot avec-euil ou -euille.<br>2. Compléter chaque mot avec -eil ou -eille.<br>3. Compléter chaque mot avec -ail ou-aille.<br>• Pratique la correction collective.<br>• Invite les apprenants à s'auto-corriger.",
+            student: "• Réalise les activités de la rubrique « Je m'entraîne ».<br>1. le chevreuil/le deuil/un fauteuil/une feuille<br>2. un appareil/le soleil/la vieille/un orteil/une bouteille<br>3. du bétail/un chandail/une trouvaille/le gouvernail/une volaille.<br>• Participe à la correction collective.<br>• S'auto-corrige.",
+            mode: "Travail individuel"
+          },
+          {
+            session: "Séance 2 (suite)",
+            phase: "Dictée (Écriture, sous dictée, d'un texte court - cinq phrases)",
+            prof: "Ecrit le texte au tableau.<br>Le réveil qui sonne. Karim descend sur le seuil de la maison. Il y trouve une bouteille remplie de lait. Il retourne au lit mais il n'a plus sommeil.<br>• Lit le texte au tableau et l'explique.<br>• Fais étudier les mots difficiles sur le plan orthographique.<br>• Dicte le contenu de manière pédagogique.<br>• Procède à la correction collective<br>• Invite à la correction individuelle.",
+            student: "• Observe le texte au tableau.<br>Le réveil qui sonne. Karim descend sur le seuil de la maison. Il y trouve une bouteille remplie de lait. Il retourne au lit mais il n'a plus sommeil.<br>• Participe à l'explication.<br>• Participe à l'étude des mots difficiles sur le plan orthographique.<br>• Ecrit le contenu dicté.<br>• Participe à la correction collective<br>• S'auto-corrige.",
+            mode: "Travail Collectif et individuel"
+          }
+        ]
+      },
+      {
+        title: "« tout », « toute », « tous », « toutes »",
+        weeks: "Semaines 14 et 15",
+        duration: "2 séances x 35 min",
+        objectives: "Savoir orthographier et utiliser « tout », « toute », « tous », « toutes ».",
+        steps: [
+          {
+            session: "Séance 1",
+            phase: "Evaluation diagnostique (Ce que je sais)",
+            prof: "• Demande d'ouvrir le livret page ....<br>• Lit et fait lire la question de la rubrique « Ce que je sais ».<br>Complète avec « tout » ou « toute ».<br>a. le monde est là.<br>b. la classe est présente.<br>• Pratiquer la correction.",
+            student: "• Ouvre le livret page ......<br>• Lit la question de la rubrique « Ce que je sais ».<br>a. Tout le monde est là.<br>b. Toute la classe est présente.<br>•Pratiquer l'auto-correction.",
+            mode: "Travail collectif"
+          },
+          {
+            session: "Séance 1 (suite)",
+            phase: "Observation/Découverte (J'observe et je découvre)",
+            prof: "• Fait observer le corpus.<br>• Lit et fait lire le corpus.<br>• Pose des questions d'aide à la compréhension.<br>1. Sur quoi roule chaque train ?<br>2. Sur quoi roule chaque locomotive ?<br>3. Quand arrivent-elles toutes ?<br>4. Comment sont-elles ?",
+            student: "• Observe le corpus.<br>• Lit le corpus.<br>• Répond aux questions :<br>1. Sur le rail<br>2. Sur le rail.<br>3. Dans un instant.<br>4. Elles sont toutes contentes et tout émues.",
+            mode: "Travail collectif",
+            corpus: "Tout train doit être vérifié. Tous les trains arrivent à l'heure. Toute locomotive fonctionne bien. Toutes les locomotives sont utiles. Ils sont tout contents."
+          },
+          {
+            session: "Séance 1 (suite)",
+            phase: "Compréhension (Je manipule et je réfléchis)",
+            prof: "• Fait observer de nouveau le corpus.<br>• Pose les questions suivantes :<br>1. Quel est le mot commun à toutes les phrases ?<br>2. Où sont placés « tout », « tous », « toute » et « toutes » dans les phrases a, b, c et d ?<br>3. Quelle est leur nature ?<br>4. Où sont placés « tous » et « toutes » dans les phrases e et f ?<br>5. Quelle est leur nature ?<br>6. Observe les phrases g, h et i. Que remarques-tu ? Peux-tu expliquer pourquoi ?<br>• Aide à réfléchir et à manipuler.<br>• Fait participer tout le groupe.<br>• Procède aux corrections constatées.",
+            student: "• Observe de nouveau le corpus.<br>• Répond aux questions :<br>1. Tout.<br>2. Devant train, trains, locomotive, locomotives.<br>3. Des noms.<br>4. Devant arrivent.<br>5. Un verbe.<br>6. Tout est placé devant un adjectif. Tout ne s'accorde pas avec l'adjectif.<br>• Réfléchit et manipule.<br>• Participe dans le groupe.<br>• S'auto-corrige.",
+            mode: "Travail collectif"
+          },
+          {
+            session: "Séance 1 (suite)",
+            phase: "Conceptualisation (Je construis la règle)",
+            prof: "• Fait un rappel de ce qui a été vu sur tout, toute, tous, toutes.<br>• Pose des questions de compréhension.<br>• Fait participer à la construction de carte mentale de la règle.<br>• Fait lire la rubrique « Je construis ».",
+            student: "• Se rappelle de ce qui a été vu.<br>• Répond aux questions posées.<br>• Participe à la construction de carte mentale de la règle.<br>• Lit la rubrique « Je construis ».",
+            mode: "Travail collectif"
+          },
+          {
+            session: "Séance 2",
+            phase: "Application/Transfert (Je m'entraîne)",
+            prof: "• Amène, à partir des activités de la rubrique « Je m'entraîne » à :<br>1. Indiquer la nature de mots soulignés.<br>2. Compléter des phrases avec « tout »,« toute », « tous » ou toutes ».<br>3. Écrire une phrase avec:<br>a. « tout » devant un nom masculin au pluriel.<br>b. « tout » devant un adjectif.<br>c. « tout » devant un verbe.<br>• Pratique la correction collective.<br>Invite les apprenants à s'auto-corriger.",
+            student: "• Réalise les activités de la rubrique « Je m'entraîne » :<br>1. a. déterminant / b. déterminant / c. pronom / d. adverbe / e. adverbe.<br>2. a. tous/b.Toute./c. toute/d. toute/e. tous/f. toutes.<br>3. Toute phrase répondant à la consigne.<br>• Participe à la correction collective.<br>• S'auto-corrige.",
+            mode: "Travail individuel"
+          },
+          {
+            session: "Séance 2 (suite)",
+            phase: "Évaluation/Soutien (Je m'évalue)",
+            prof: "• Amène, à partir des activités de la rubrique « Je m'évalue » à :<br>1. Indiquer la nature de mots soulignés.<br>2. Compléter des phrases avec « tout »,« toute », 3. « tous » ou « toutes ».<br>4. Écrire une phrase avec:<br>a. « tout » devant un nom masculin au pluriel.<br>b. « tout » devant un adjectif.<br>c. « tout » devant un verbe.<br>• Pratique la correction collective.<br>• Invite les apprenants.es à s'auto-corriger.<br>• Note les résultats de l'évaluation sur une grille.",
+            student: "• Réalise les activités de la rubrique.<br>1. a. déterminant / b. déterminant / c. pronom / d. adverbe /e. déterminant.<br>2. a. toutes/b.Toute/c. toute/d. tout/e. toutes/f. tout.<br>3. Toute phrase répondant à la consigne.<br>4.<br>• Participe à la correction collective.<br>• S'auto-corrige.<br>• S'auto-évalue.",
+            mode: "Travail individuel"
+          },
+          {
+            session: "Séance 2 (suite)",
+            phase: "Écriture, sous dictée, d'un texte court (quatre phrases)",
+            prof: "• Ecrit le texte au tableau.<br>Tous les dimanches, toutes les filles et tous les garçons se réunissent dans le jardin public pour chanter. Tout le monde est content. Tous les papas sont contents. Les mamans ne disent rien car elles sont tout émues.<br>• Lit le texte au tableau et l'explique.<br>• Fais étudier les mots difficiles sur le plan orthographique.<br>• Dicte le contenu de manière pédagogique.<br>• Procède à la correction collective.<br>• Invite à la correction individuelle.",
+            student: "• Observe le texte au tableau.<br>Tous les dimanches, toutes les filles et tous les garçons se réunissent dans le jardin public pour chanter. Tout le monde est content. Tous les papas sont contents. Les mamans ne disent rien car elles sont tout émues.<br>• Participe à l'explication.<br>• Participe à l'étude des mots difficiles sur le plan orthographique.<br>• Ecrit le contenu dicté.<br>• Participe à la correction collective<br>• S'auto-corrige.",
+            mode: "Travail collectif et individuel"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: "production-ecrit",
+    title: "Production de l'écrit",
+    icon: "fas fa-pen",
+    lessons: [
+      {
+        title: "Mise en ordre d'un texte à caractère informatif",
+        weeks: "Semaines 12 et 13",
+        duration: "1 s x 35 min / 2 s x 30 min",
+        objectives: "Mettre en ordre un texte à caractère informatif se rapportant aux sciences et aux technologies.",
+        steps: [
+          {
+            session: "Séance 1",
+            phase: "Observation/Découverte (J'observe et je découvre)",
+            prof: "• Indique la page du livret page .....<br>• Fait observer le corpus.<br>• Lit et fait lire le corpus.<br>• Explique le lexique difficile.<br>• Lit et explicite les consignes une par une.<br>1. A ton avis, ces textes donnent des informations ou relatent une histoire ?<br>2. Quels sont ces types de texte ?<br>3. De quoi parle chaque texte ?<br>• Pratique la correction collective.",
+            student: "• Ouvre son livret page<br>• Observer le corpus.<br>• Lit le corpus.<br>• Ecoute et assimile le lexique expliqué.<br>• Ecoute et exécute les consignes une par une.<br>1. Ces textes donnent des informations.<br>2. Ces textes sont de type informatif.<br>3. Le 1er parle des robots et le 2e d'une fusée.<br>• S'auto-corrige.",
+            mode: "Travail collectif"
+          },
+          {
+            session: "Séance 1 (suite)",
+            phase: "Compréhension / Conceptualisation (Je manipule et je réfléchis)",
+            prof: "• Lit et explicite les consignes une par une.<br>1. Lis les textes. Que remarques-tu ?<br>5. Quel texte donne des informations précises ?<br>6. Que faut-il faire pour l'autre texte.<br>• Pratique la correction collective.",
+            student: "• Ecoute et exécute les consignes une par une.<br>1. Le 1er texte n'et pas en ordre.<br>5. C'est le 2e texte ?<br>6. Il faut le mettre en ordre.<br>• S'auto-corrige.",
+            mode: "Travail collectif"
+          },
+          {
+            session: "Séance 2",
+            phase: "Application/Transfert (Je m'entraîne/Je produits)",
+            prof: "• Lit et fait lire la consigne de la rubrique « Je m'entraine ».<br>• Tu as visité le salon du livre. Raconte ce que tu as vu pendant cette visite.<br>• Leur donne des éléments de travail :<br>- Des visiteurs de tous les coins de la ville.<br>- Des stands garnis de livres de toutes les natures:<br>- Des livres scolaires, des livres scientifiques, des bandes dessinées, des livres d'art plastiques, des romans.<br>- des enseignantes(ts) qui expliquent à leurs apprenants.es le contenu des ouvrages exposés.<br>• Les laisse produire en groupe.<br>• Fait lire les productions<br>• Les laisse participer à une correction magistrale et collective.<br>• Lis et fait lire la consigne de la rubrique « Je produis »<br>Tu as visité une foire des nouvelles technologies: raconte ce tu as vu pendant la visite.<br>Ramasse les copies pour une correction magistrale.",
+            student: "• Ecoute la consigne de la rubrique « Je m'entraine ».<br>Produis un texte narratif de sept lignes.<br>• S'auto-corrige.<br>• Ecoute la consigne de la rubrique «Je produis ».<br>• Produis seul ou avec des camarades.<br>Ecoute les consignes de son enseignante(t).<br>• Formule des phrases correctes et les écrit.<br>• Lit sa production et s'autocorrige.<br>Ecoute la consigne de la rubrique « je produis ».<br>• Raconte sa visite au salon des nouvelles technologies.<br>Remet sa feuille pour une correction magistrale.",
+            mode: "Travail Individuel"
+          },
+          {
+            session: "Séance 3",
+            phase: "Production (suite)/Evaluation/Soutien",
+            prof: "• Lit et fait lire la consigne de la rubrique « m'entraine».<br>Mets en ordre les phrases de ce texte en les numérotant de 1 à 5.<br>- Il peut transporter des personnes ou des marchandises.<br>- C'est une machine volante- ou aéronef - avec des ailes et un moteur.<br>- L'avion permet de se rendre partout dans le monde.<br>- L'avion a été inventé à la fin du XIX siècle (1890) par le Français Clément Ader.<br>- Il était déjà utilisé lors de la Première Guerre mondiale<br>• Pratique la correction collective.<br>• Lit et fait lire la consigne de la rubrique « Je produis ».<br>Recopie ce texte dans le bon ordre sur une feuille.<br>- Elle relie Tanger à Casablanca et dessert Larache, Kenitra et Rabat, la capitale du royaume.<br>- La ligne à grande vitesse inaugurée ce 15 novembre 2018 est la première du continent africain.<br>- Une ligne de train très moderne.<br>- Le nom de la ligne choisi par Sa Majesté le Roi Mohammed VI, Al Boraq, fait référence à la monture ailée chevauchée par le prophète Mahomet.<br>- La ligne permettra de Tanger à Casablanca en 2 h 10 contre 4 h 45 auparavant.<br>• Ramasse les feuilles pour une correction magistrale.<br>• Distribue les productions aux apprenants.<br>• Signale les erreurs les plus fréquentes répertoriées.<br>• Invite à les corriger collectivement puis individuellement.<br>• Choisit les meilleures productions, à l'aide de critères.<br>- respect de la consigne;<br>- utilisation correcte de la langue;<br>- lisibilité de l'écrit.<br>• Etablit sa grille d'évaluation pour un soutien ou un approfondissement.",
+            student: "Ecoute la consigne de la rubrique «Je m'entraine ».<br>Il met en ordre les phrases du texte.<br>- L'avion a été inventé à la fin du XIX siècle (1890) par le Français Clément Ader.<br>- C'est une machine volante- ou aéronef - avec des ailes et un moteur.<br>- Il était déjà utilisé lors de la Première Guerre mondiale<br>- L'avion permet de se rendre partout dans le monde.<br>- Il peut transporter des personnes ou des marchandises.<br>S'auto-corrige.<br>Ecoute la consigne de la rubrique «Je produis ».<br>Recopie le texte dans le bon ordre.<br>Une ligne de train très moderne<br>- La ligne à grande vitesse inaugurée ce 15 novembre 2018 est la première du continent africain<br>- Le nom de la ligne choisi par Sa Majesté le Roi Mohammed VI, Al Boraq, fait référence à la monture allée chevauchée par le prophète Mahomet.<br>- Elle relie Tanger à Casablanca et dessert Larache, Kenitra et Rabat, la capitale du royaume.<br>- La ligne permettra de Tanger à Casablanca en 2 h 10 contre 4 h 45 auparavant.<br>Remet sa feuille pour une correction magistrale.<br>Reçoit sa production et l'étudie.<br>Erudit les erreurs soulignées.<br>Participe à la correction collective.<br>S'auto-corrige.<br>S'auto - évalue selon :<br>respect de la consigne;<br>utilisation correcte de la langue;<br>lisibilité de l'écrit.<br>• Bénéficie d'un soutien ou d'un approfondissement.",
+            mode: "Travail individuel"
+          }
+        ]
+      },
+      {
+        title: "Texte à caractère argumentatif se rapportant aux sciences et aux technologies",
+        weeks: "Semaines 14 et 15",
+        duration: "1 s x 35 min / 2 s x 30 min",
+        objectives: "Produire un texte à caractère argumentatif se rapportant aux sciences et aux technologies",
+        steps: [
+          {
+            session: "Séance 1",
+            phase: "Observation/Découverte (J'observe et je découvre)",
+            prof: "• Indique la page du livret.<br>Fait observer le corpus.<br>• Lit et fait lire le corpus.<br>• Explique le lexique difficile.<br>• Lit et explicite les consignes une par une.<br>1. A ton avis, ce texte est une lettre; une affiche; un article de journal.<br>2. De quoi est composé ce document?<br>• Pratique la correction collective.",
+            student: "• Ouvre son livret.<br>• Observer le corpus.<br>• Lit et fait lire le corpus.<br>• Ecoute et assimile le lexique expliqué.<br>• Ecoute et exécute les consignes une par une.<br>1. Un article de journal.<br>2. Un texte et une image.<br>• S'auto-corrige.",
+            mode: "Travail collectif"
+          },
+          {
+            session: "Séance 1 (suite)",
+            phase: "Compréhension / Conceptualisation (Je manipule et je réfléchis)",
+            prof: "• Lit et explicite les consignes une par une.<br>1. De quel sujet parle l'auteur ? À qui s'adresse-t-il?<br>2. Relève les arguments qui critiquent l'utilisation des robots.<br>3. De quel type de texte s'agit-il?<br>• Pratique la correction collective.",
+            student: "Ecoute et exécute les consignes une par une.<br>1. Des robots. Il s'adresse aux lecteurs.<br>2. Il est clair que... / Ainsi... / Toutefois... / On peut dire...<br>3. Un texte argumentatif.<br>• S'auto-corrige.",
+            mode: "Travail individuel"
+          },
+          {
+            session: "Séance 2",
+            phase: "Application/Transfert (Je m'entraîne/Je produits)",
+            prof: "• Lit et fait lire la consigne de la rubrique « Je m'entraine ».<br>Produire un petit texte argumentatif en donnant son opinion sur l'utilisation d'une tablette.<br>• Pratique la correction collective.<br>• Lit et fait lire la consigne de la rubrique « Je produis ».<br>Produire un texte argumentatif de six lignes en donnant son opinion sur l'utilisation du téléphone portable ou de l'ordinateur.<br>• Ramasse les feuilles pour une correction magistrale.",
+            student: "• Ecoute la consigne de la rubrique « Je m'entraine ».<br>• Produit un petit texte argumentatif en donnant son opinion sur l'utilisation d'une tablette.<br>• S'auto-corrige.<br>Ecoute la consigne de la rubrique « Je produis ».<br>• Produit un texte argumentatif de six lignes en donnant son opinion sur l'utilisation du téléphone portable ou de l'ordinateur.<br>Remet sa feuille pour une correction magistrale.",
+            mode: "Travail individuel"
+          },
+          {
+            session: "Séance 3",
+            phase: "Production (suite)/Evaluation/Soutien",
+            prof: "• Distribue les productions aux apprenants.es.<br>• Signale les erreurs les plus fréquentes répertoriées.<br>• Invite à les corriger collectivement puis individuellement.<br>• Choisit les meilleures productions, à l'aide de critères:<br>- respect de la consigne;<br>- utilisation correcte de la langue;<br>- lisibilité de l'écrit.<br>• Etablit sa grille d'évaluation pour un soutien ou un approfondissement.",
+            student: "• Reçoit sa production et l'étudie.<br>Erudit les erreurs soulignées.<br>• Participe à la correction collective.<br>• S'auto-corrige.<br>S'auto-évalue selon:<br>respect de la consigne;<br>utilisation correcte de la langue;<br>lisibilité de l'écrit.<br>• Bénéficie d'un soutien ou d'un approfondissement.",
+            mode: "Travail individuel"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: "lecture-diction",
+    title: "Lecture diction",
+    icon: "fas fa-book",
+    lessons: [
+      {
+        title: "L'ordinateur",
+        weeks: "Semaines 6, 7, 8 et 9 (Note: Unité 3)",
+        duration: "3 séances x 30 min",
+        objectives: "Comprendre un poème. Dire un poème de manière expressive.",
+        steps: [
+          {
+            session: "Séance 1",
+            phase: "Observation/Découverte (Je découvre le poème)",
+            prof: "• Demande aux apprenants d'observer l'image qui accompagne le poème.<br>• Pose les questions de la rubrique.<br>1. Quel est le titre du poème ?<br>2. Qui a écrit le poème ?<br>3. Observe l'image. Que représente-t-elle ?",
+            student: "Observe l'image qui accompagne le poème.<br>• Répond aux questions.<br>1. Quel est le titre du poème ?<br>2. Qui a écrit le poème ?<br>3. Observe l'image. Que représente-t-elle ?",
+            mode: "Travail collectif"
+          },
+          {
+            session: "Séance 1 (suite)",
+            phase: "Compréhension/Conceptualisation (J'écoute et je comprends)",
+            prof: "• Fait écouter attentivement le poème.<br>Invite à lire silencieusement le poème.<br>• Explique le lexique du poème.<br>1. Encombrant: qui encombre, qui est volumineux, qui prend de la place.<br>2. tournis: vertige.<br>3. apprivoiser: ici rendre moins dangereux, moins effrayant.<br>4. fabuleux: merveilleux, fantastique.<br>5. rivés: fixés.<br>6. soucis: inquiétudes.<br>• Pose des questions de compréhension globale.<br>4. Quel est le rôle de cet appareil?<br>5. Pourquoi l'auteur n'était pas ravi ?<br>6. Que permet l'ordinateur à l'auteur ?<br>7. Comment l'auteur n'est-il pas tout seul?<br>8. Qu'est-ce qui s'entrouvre à l'auteur ?",
+            student: "• Ecoute le poème attentivement et suit sur le livret.<br>• Lit silencieusement le poème.<br>• Assimile le lexique expliqué.<br>1. encombrant: qui encombre, qui est volumineux, qui prend de la place.<br>2. tournis: vertige.<br>3. apprivoiser: ici rendre moins dangereux, moins effrayant.<br>4. fabuleux: merveilleux, fantastique.<br>5. rivés: fixés.<br>6. soucis: inquiétudes<br>• Répond aux questions de compréhension globale.<br>4. Il permet d'écrire, de faire des recherches, de naviguer.<br>5. Parce que l'ordinateur est encombrant et capricieux.<br>6. travailler, découvrir.<br>7. Il est branché avec des amis.<br>8. C'est le monde entier qui s'entrouvre à l'auteur.",
+            mode: "Travail individuel et collectif"
+          },
+          {
+            session: "Séance 2",
+            phase: "Étude du poème (J'étudie la forme du poème)",
+            prof: "• Dit et fait dire le poème.<br>Pose les questions de la rubrique:<br>9. Combien de strophes compte ce poème ?<br>10. Quel est le nombre de vers ?<br>11. Un quatrain est une strophe de 4 vers. De combien de quatrains est composé ce poème ?<br>Un tercet est une strophe de 3 vers. De combien de tercets est composé ce poème ?<br>12.<br>Quels sont les vers qui riment ensemble ?<br>13.",
+            student: "• Dit correctement le poème écouté.<br>• Lit et répond aux questions.<br>9. Quatre strophes.<br>10. Quatorze vers ?<br>11. Deux quatrains.<br>12. Deux tercets.<br>13. Accepter toutes les réponses possibles et justes.",
+            mode: "Travail individuel et collectif"
+          },
+          {
+            session: "Séance 2 (suite)",
+            phase: "Étude du poème (Je dis le poème)",
+            prof: "• Amène à marquer les pauses.<br>/Je l'ai apprivoisé/et petit à petit,/<br>/J'ai ouvert des fenêtres,/ j'ai lancé des applis,/<br>/J'ai navigué sans fin,/j'ai compris l'avantage/<br>/Qu'offre à tous mes besoins/ce fabuleux outil.<br>• Amène à lire en respectant les liaisons et les enchaînements.<br>• Fait souligner les mots qui leur paraissent importants et qui donnent du sens.<br>• Amène les apprenants.es à dire le poème différemment, plus lentement, ... s'ils en ont envie puis à le mémoriser vers par vers.<br>• Corrige la diction.",
+            student: "• Marquer les pauses.<br>• Lit en respectant les liaisons et les enchaînements.<br>est entré/parlait un langage/petit à petit/des applis/fabuleux outil/ces amis/le monde entier/rêves et mes soucis.<br>• Souligner les mots qui lui paraissent importants et qui donnent du sens.<br>Dit le poème différemment, plus lentement, s'ils en a envie puis le mémoriser vers par vers.<br>Corrige sa diction.",
+            mode: "Travail individuel et collectif"
+          },
+          {
+            session: "Séance 3",
+            phase: "Récitation et évaluation",
+            prof: "• Invite les apprenants.es à réciter le poème<br>• Corrige la diction.<br>• Insiste sur la prononciation et l'intonation.<br>• Pose quelques questions de compréhension.",
+            student: "• Récite le poème<br>Corrige sa diction.<br>• Soigne sa prononciation et son intonation.<br>• Répond aux questions de compréhension.",
+            mode: "Travail individuel"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: "projet-classe",
+    title: "Projet de classe",
+    icon: "fas fa-project-diagram",
+    lessons: [
+      {
+        title: "Réaliser un journal sur les sciences et les technologies",
+        weeks: "Semaines 2, 3, 4, 5 et 6",
+        duration: "5 séances x 30 min",
+        objectives: "Enrichir ses compétences communicatives; - Développer ses compétences en lecture; - Développer ses compétences en écrit; Elaborer un reportage sur les défis de la vie contemporaine.",
+        steps: [
+          {
+            session: "Semaine 1",
+            phase: "Etape 1: Présentation et planification du projet",
+            prof: "• Active les connaissances antérieures des apprenants.es sur la notion de projet, sur les projets de classe qu'ils ont déjà réalisés.<br>• Annonce les objectifs visés, les modalités de travail et le matériel à utiliser dans l'élaboration du projet.<br>• Explique le projet: objet, déroulement, intérêt, échéancier, intérêts, tâches et consigne.<br>• Discute l'objet et le processus du projet avec les apprenants.es.<br>• Invite les apprenants.es à rechercher des photos et des textes narratifs et narratifs descriptifs en relation avec le projet Reportage sur les défis de la vie contemporaine.<br>• Motive les apprenants.es en leur proposant des pistes pour réaliser le projet.<br>• Oriente les apprenants.es à travailler en groupes.<br>• Faire réfléchir les apprenants.es sur les moyens à mettre en œuvre.<br>• Demande de planifier les actions.<br>• Participe à la distribution des tâches.<br>• Aide les apprenants.es dans la gestion de l'enveloppe horaire impartie au projet.",
+            student: "Active ses connaissances et ses expériences antérieures en matière de projet de classe.<br>• Prend connaissance des objectifs visés, des modalités. de travail et du matériel à utiliser dans l'élaboration du projet.<br>• Prend connaissance du projet: objet, déroulement, intérêt, échéancier, tâches et consigne.<br>• Participe à la discussion de l'objet et du processus du projet.<br>Discute la consigne, pose des questions, cherche des explications...<br>Réfléchit sur les pistes proposées.<br>• Choisit son groupe de travail.<br>• Réfléchit sur les moyens à utiliser.<br>• Planifie les actions.<br>• Se partage les tâches avec ses camarades.<br>• Détermine les dates.",
+            mode: "Travail collectif / Travail en groupes"
+          },
+          {
+            session: "Semaine 2",
+            phase: "Etape 2: Réalisation du projet",
+            prof: "• Vérifie si les apprenants.es ont entamé la réalisation du projet (ont-ils un matériel à proposer ? Rencontrent-ils des difficultés ?...).<br>• Organise le travail en groupe pour le choix des photos (illustrations) et des textes informatifs et argumentatifs qui seront présentés dans la réalisation du dossier.<br>• Oriente les apprenants.es et propose des solutions.<br>• Fait analyser les résultats et les échecs (sans toucher l'amour propre des apprenants.es).<br>• Incite les apprenants.es à noter les solutions proposées.<br>• Amène les apprenants.es à faire le bilan de leurs avancées, en fonction des objectifs de départ.<br>• Contrôle les travaux réalisés.",
+            student: "• Présente les documents trouvés.<br>• Les textes informatifs qui seront exploités.<br>• Collecte des documents, des photos, des illustrations.<br>• Collecte des informations sur le sujet.<br>• Rédige de petits textes.<br>Fais des enquêtes et des interviews.<br>• Discute de tout le matériel collecté.<br>• Choisit le contenu qui sera retenu pour l'édition.<br>Réfléchis sur la forme du journal.<br>• Réfléchis sur le sommaire du journal.<br>• Commence l'élaboration du journal.<br>Exprime les difficultés rencontrées.<br>• Exprime les besoins de son groupe.<br>• Note les solutions proposées.<br>Fait le bilan des actions réalisées.",
+            mode: "Travail en groupes"
+          },
+          {
+            session: "Semaine 3",
+            phase: "Etape 3: Finalisation du projet",
+            prof: "• Anime la séance de réalisation du du journal:<br>le titre, le nombre de page, les rubriques, les photos, les textes informatifs et argumentatifs à y mettre.<br>• Fait classer les documents.<br>• Oriente les apprenants.es vers l'élaboration du journal..<br>• Ecoute les propositions des apprenants.es.<br>• Encourage les groupes à réaliser le projet.",
+            student: "• Rédige le contenu final.<br>• Révise les contenus.<br>• Finalise le travail en commun.<br>• Discute avec ses pairs.<br>• Défend son point de vue.<br>• Accepte les décisions du groupe.",
+            mode: "Travail en groupes / Travail collectif"
+          },
+          {
+            session: "Semaine 4",
+            phase: "Semaine 4: Entraînement à la présentation",
+            prof: "• Finalise l'exposition: aide les apprenants.es à rectifier, à doser, à bien présenter le journal<br>Anime la séance d'entraînement à la présentation du journal.",
+            student: "Présente le journal devant son groupe.<br>• Présente le journal devant le groupe-classe.<br>Réponds aux questions de l'auditoire.<br>• S'entraîne à présenter le projet.",
+            mode: "Travail individuel"
+          },
+          {
+            session: "Semaine 5",
+            phase: "Etape 5: Présentation du projet",
+            prof: "Anime la séance de présentation du reportage.<br>• Invite les représentants des classes de l'école, des professeurs, des parents... à assister à la présentation de l'exposition.<br>• Encourage les apprenants/les apprenantes<br>• Evalue le travail réalisé.",
+            student: "• Présente le journal devant les élèves de l'école, les enseignants et les parents.<br>• Explique les étapes de réalisation du journal.<br>• Explique l'intérêt du journal.<br>• Réponds aux questions de l'auditoire.",
+            mode: "Travail en groupes"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: "soutien",
+    title: "Semaine de soutien / Consolidation / Validation",
+    icon: "fas fa-clipboard-check",
+    lessons: [
+      {
+        title: "Évaluation de fin d'unité",
+        weeks: "Fin d'unité",
+        duration: "À définir selon les besoins",
+        objectives: "Évaluer les compétences acquises",
+        steps: [
+          {
+            session: "Semaine de consolidation",
+            phase: "Évaluation globale",
+            prof: "Distribue les productions aux apprenants. Signale les erreurs les plus fréquentes répertoriées. Invite les corriger collectivement puis individuellement. Choisit les meilleures productions, à l'aide de critères : respect de la consigne, utilisation correcte de la langue, lisibilité de l'écrit. Établit sa grille d'évaluation pour un soutien ou un approfondissement.",
+            student: "Reçoit sa production et l'étudie. Érudit les erreurs soulignées. Participe à la correction collective. S'auto-corrige. S'auto-value selon : respect de la consigne, utilisation correcte de la langue, lisibilité de l'écrit. Bénéficie d'un soutien ou d'un approfondissement.",
+            mode: "Travail individuel et collectif"
+          }
+        ]
+      }
+    ]
+  }
+];
+
+    // LOGIQUE DE L'APPLICATION
+    let currentProfName = "Prof. Ikbal OUAISSA";
+    let currentDiscipline = null;
+
+    function init() {
+        const menuContainer = document.getElementById('menu-container');
+        
+        pedagogicalData.forEach((discipline, index) => {
+            const item = document.createElement('div');
+            item.className = `nav-item ${index === 0 ? 'active' : ''}`;
+            item.innerHTML = `<i class="${discipline.icon}"></i> ${discipline.title}`;
+            item.onclick = () => {
+                document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+                item.classList.add('active');
+                renderDiscipline(discipline);
+            };
+            menuContainer.appendChild(item);
+
+            if(index === 0) renderDiscipline(discipline);
+        });
+    }
+
+    function updateTeacherName() {
+        const input = document.getElementById('profNameInput');
+        currentProfName = input.value;
+        if(currentDiscipline) renderDiscipline(currentDiscipline);
+        alert("Nom du professeur mis à jour !");
+    }
+
+    function renderDiscipline(discipline) {
+        currentDiscipline = discipline;
+        const display = document.getElementById('fiche-display');
+        display.innerHTML = '';
+
+        discipline.lessons.forEach(lesson => {
+            const fiche = document.createElement('div');
+            fiche.className = 'fiche-preview';
+            
+            let stepsHtml = '';
+            lesson.steps.forEach(step => {
+                let extraContent = '';
+                if(step.dialogue) extraContent += `<div class="special-content dialogue"><span class="content-label">Dialogue :</span>${step.dialogue}</div>`;
+                if(step.corpus) extraContent += `<div class="special-content corpus"><span class="content-label">Corpus :</span>${step.corpus}</div>`;
+
+                stepsHtml += `
+                    <tr>
+                        <td class="col-session">
+                            ${step.session}<br>
+                            <span class="phase-label">${step.phase.split('(')[0]}</span>
+                        </td>
+                        <td>${step.prof}${extraContent}</td>
+                        <td>${step.student}</td>
+                        <td style="text-align:center;">${step.mode}</td>
+                    </tr>
+                `;
+            });
+
+            fiche.innerHTML = `
+                <div class="fiche-header">
+                    <div class="header-main">
+                        <h2>${discipline.title}</h2>
+                        <span class="prof-badge"><i class="fas fa-user-tie"></i> ${currentProfName}</span>
+                    </div>
+                    <div class="unit-badge">
+                        <span>Unité Didactique</span>
+                        <strong>Unité 3</strong>
+                    </div>
+                </div>
+
+                <div class="lesson-block">
+                    <div class="lesson-info">
+                        <h3>${lesson.title}</h3>
+                    </div>
+                    <div class="lesson-meta">
+                        <span class="meta-tag"><i class="far fa-calendar-alt"></i> ${lesson.weeks}</span>
+                        <span class="meta-tag"><i class="far fa-clock"></i> ${lesson.duration}</span>
+                    </div>
+                </div>
+
+                <div class="objectives-container">
+                    <span class="obj-title"><i class="fas fa-bullseye"></i> Objectifs d'apprentissage</span>
+                    <div class="obj-content">${lesson.objectives}</div>
+                </div>
+
+                <table class="pedago-table">
+                    <thead>
+                        <tr>
+                            <th>Séance / Phase</th>
+                            <th>Activités de l'enseignant</th>
+                            <th>Activités de l'apprenant</th>
+                            <th>Modalités</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${stepsHtml}
+                    </tbody>
+                </table>
+                <div class="page-break"></div>
+            `;
+            display.appendChild(fiche);
+        });
+    }
+
+    function printSingle() {
+        window.print();
+    }
+
+    function printAll() {
+        const printArea = document.getElementById('print-area');
+        printArea.innerHTML = '';
+        
+        let allContent = '';
+
+        pedagogicalData.forEach(discipline => {
+            discipline.lessons.forEach(lesson => {
+                let stepsHtml = '';
+                lesson.steps.forEach(step => {
+                    let extraContent = '';
+                    if(step.dialogue) extraContent += `<div class="special-content dialogue" style="border:1px solid #ccc; padding:5px; margin-top:5px; font-size:0.8em;"><strong>Dialogue:</strong><br>${step.dialogue}</div>`;
+                    if(step.corpus) extraContent += `<div class="special-content corpus" style="border:1px solid #ccc; padding:5px; margin-top:5px; font-size:0.8em; font-style:italic;"><strong>Corpus:</strong><br>${step.corpus}</div>`;
+
+                    stepsHtml += `
+                        <tr>
+                            <td style="border:1px solid black; padding:5px; width:15%;"><strong>${step.session}</strong><br>${step.phase}</td>
+                            <td style="border:1px solid black; padding:5px; width:35%;">${step.prof}${extraContent}</td>
+                            <td style="border:1px solid black; padding:5px; width:35%;">${step.student}</td>
+                            <td style="border:1px solid black; padding:5px; width:15%; text-align:center;">${step.mode}</td>
+                        </tr>
+                    `;
+                });
+
+                allContent += `
+                    <div class="fiche-preview page-break" style="border:none; box-shadow:none; margin:0; padding:0; width:100%;">
+                        <div class="fiche-header" style="border-bottom: 2px solid black; margin-bottom:15px;">
+                            <div class="header-main">
+                                <h2 style="color:black; font-size:18pt; margin:0;">${discipline.title} : ${lesson.title}</h2>
+                                <p style="margin:5px 0; color:black;">Prof : ${currentProfName}</p>
+                            </div>
+                            <div style="border:1px solid black; padding:5px; display:inline-block;">
+                                Unité 3
+                            </div>
+                        </div>
+
+                        <div class="lesson-block" style="border:1px solid black; background:none; padding:10px; margin-bottom:15px;">
+                             <strong>${lesson.weeks}</strong> - ${lesson.duration}
+                        </div>
+
+                        <div class="objectives-container" style="border:1px dashed black; background:none; padding:10px; margin-bottom:15px;">
+                            <strong>Objectifs :</strong> ${lesson.objectives}
+                        </div>
+
+                        <table style="width:100%; border:1px solid black; border-collapse:collapse;">
+                            <thead>
+                                <tr>
+                                    <th style="border:1px solid black; background:#eee; color:black; padding:5px;">Séance</th>
+                                    <th style="border:1px solid black; background:#eee; color:black; padding:5px;">Activités Professeur</th>
+                                    <th style="border:1px solid black; background:#eee; color:black; padding:5px;">Activités Apprenant</th>
+                                    <th style="border:1px solid black; background:#eee; color:black; padding:5px;">Mod.</th>
+                                </tr>
+                            </thead>
+                            <tbody>${stepsHtml}</tbody>
+                        </table>
+                        <div style="page-break-after: always;"></div>
+                    </div>
+                `;
+            });
+        });
+
+        printArea.innerHTML = allContent;
+        window.print();
+    }
+
+    // Init App
+    init();
+
+</script>
+
+</body>
+</html>
