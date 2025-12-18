@@ -85,44 +85,56 @@
             box-shadow: 0 2px 5px rgba(244, 63, 94, 0.3);
         }
 
-        .prof-control {
+        /* --- ZONE DE CONTROLE PROFESSEUR (CORRIGÉE) --- */
+        .prof-controls-wrapper {
             display: flex;
-            gap: 12px;
+            gap: 10px;
             align-items: center;
-            background: var(--bg-body);
-            padding: 6px 8px 6px 16px;
-            border-radius: 30px;
+            background: #f1f5f9; /* Gris plus foncé pour le fond du groupe */
+            padding: 8px 15px;
+            border-radius: 12px; /* Moins rond, plus "boite" */
             border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
         }
         
-        .prof-control:focus-within {
-            border-color: var(--brand-accent);
-            box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.1);
-            background: var(--bg-surface);
-        }
-
-        .prof-control span {
-            font-weight: 700;
+        /* Selecteur de Genre */
+        .gender-select {
+            padding: 8px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            background: white;
             font-family: 'Montserrat', sans-serif;
-            color: var(--text-light);
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            font-weight: 600;
+            color: var(--brand-dark);
+            font-size: 0.85rem;
+            cursor: pointer;
+            outline: none;
         }
 
-        input[type="text"] {
-            padding: 6px 10px;
-            border: none;
-            background: transparent;
-            width: 180px;
+        /* Champs Texte (Bien visibles maintenant) */
+        .input-name {
+            padding: 8px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            background: white; /* Fond blanc explicite */
+            width: 140px;
             font-family: 'Roboto', sans-serif;
             font-weight: 500;
             color: var(--brand-dark);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            transition: border-color 0.2s;
         }
         
-        input[type="text"]:focus { outline: none; }
+        .input-name:focus { 
+            outline: none; 
+            border-color: var(--brand-accent);
+            box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.1);
+        }
+        
+        .input-name::placeholder {
+            color: #94a3b8;
+            font-size: 0.85rem;
+        }
 
         button {
             cursor: pointer;
@@ -143,14 +155,18 @@
             background-color: var(--brand-dark); 
             color: white; 
             padding: 0;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
+            width: 36px; /* Un peu plus grand */
+            height: 36px;
+            border-radius: 8px; /* Carré arrondi au lieu de rond */
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        .btn-validate:hover { background-color: var(--brand-accent); transform: rotate(15deg); }
+        .btn-validate:hover { 
+            background-color: var(--brand-accent); 
+            transform: translateY(-1px);
+        }
 
         .btn-action { 
             background-color: var(--bg-surface); 
@@ -636,7 +652,7 @@
             /* =========================================
                2. NETTOYAGE
                ========================================= */
-            header, aside, .toolbar, footer, .prof-control, .nav-item, .btn-action, .btn-primary-action, .support-msg-container {
+            header, aside, .toolbar, footer, .prof-controls-wrapper, .nav-item, .btn-action, .btn-primary-action, .support-msg-container {
                 display: none !important;
             }
 
@@ -744,10 +760,15 @@
             <i class="fas fa-graduation-cap"></i>
             <span>Mes Fiches 6AEP</span>
         </div>
-        <div class="prof-control">
-            <span>Enseignant(e) :</span>
-            <input type="text" id="profNameInput" placeholder="Votre nom" value="Ikbal OUAISSA">
-            <button class="btn-validate" onclick="updateTeacherName()"><i class="fas fa-arrow-right"></i></button>
+        <!-- MODIFICATION: Groupe de contrôle Enseignant AVEC CHAMPS BLANCS VISIBLES -->
+        <div class="prof-controls-wrapper">
+            <select id="profGender" class="gender-select">
+                <option value="M">Enseignant</option>
+                <option value="F">Enseignante</option>
+            </select>
+            <input type="text" id="profFirstName" class="input-name" placeholder="Votre Prénom" value="Ikbal">
+            <input type="text" id="profLastName" class="input-name" placeholder="Votre Nom" value="OUAISSA">
+            <button class="btn-validate" onclick="updateTeacherIdentity()"><i class="fas fa-check"></i></button>
         </div>
     </header>
 
@@ -1633,6 +1654,7 @@ const pedagogicalData = [
 
     // LOGIQUE DE L'APPLICATION
     let currentProfName = "Ikbal OUAISSA";
+    let currentProfGender = "M"; // "M" ou "F"
     let currentDiscipline = null;
 
     function init() {
@@ -1655,51 +1677,73 @@ const pedagogicalData = [
 
     // --- FONCTIONS DE VALIDATION ET MISE À JOUR ---
 
-    function validateTeacherName(name) {
+    function validateNameField(name) {
         const cleanName = name.trim();
         
-        // 1. Vérifications basiques (Vide, Chiffres, Points)
-        // Regex : Vide OU contient chiffre OU contient point
-        if (cleanName.length === 0 || /[\d\.]/.test(cleanName)) {
-            return "Hein !!! que faites-vous ? Votre nom SVP 🤪";
+        // Validation stricte : Pas vide, seulement des lettres (et accents, tirets, espaces), pas de chiffres, pas de ponctuation interdite
+        // Regex autorise : lettres (a-z, A-Z), accents (À-ÿ), espaces, tirets, apostrophes
+        // Regex interdit implicitement : chiffres, points, deux points, etc.
+        const validPattern = /^[a-zA-ZÀ-ÿ\s'-]+$/;
+
+        if (cleanName.length === 0) {
+            return false;
+        }
+        
+        if (!validPattern.test(cleanName)) {
+            return false;
         }
 
-        // 2. Mots interdits (Insensible à la casse)
-        // Regex : mot entier prof, professeur, enseignant, enseignante
-        const forbiddenPattern = /\b(prof|professeur|enseignant|enseignante)\b/i;
-        if (forbiddenPattern.test(cleanName)) {
-            return "مطور مع راسك كتب سميتك نيشان";
-        }
-
-        return ""; // Aucune erreur
+        return true;
     }
 
-    function updateTeacherName() {
-        const input = document.getElementById('profNameInput');
-        const nameValue = input.value;
-        const errorMessage = validateTeacherName(nameValue);
+    function updateTeacherIdentity() {
+        const genderInput = document.getElementById('profGender');
+        const firstNameInput = document.getElementById('profFirstName');
+        const lastNameInput = document.getElementById('profLastName');
 
-        // Réinitialiser le message d'abord pour éviter les conflits
-        input.setCustomValidity("");
+        const genderValue = genderInput.value;
+        const firstNameValue = firstNameInput.value;
+        const lastNameValue = lastNameInput.value;
 
-        if (errorMessage) {
-            // Affichage de l'erreur native avec le message personnalisé
-            input.setCustomValidity(errorMessage);
-            input.reportValidity();
+        let isValid = true;
+        let errorMsg = "Hein !!! que faites-vous ? Votre nom SVP 🤪";
+
+        // Réinitialiser les messages d'erreur système
+        firstNameInput.setCustomValidity("");
+        lastNameInput.setCustomValidity("");
+
+        if (!validateNameField(firstNameValue)) {
+            firstNameInput.setCustomValidity(errorMsg);
+            firstNameInput.reportValidity();
             
-            // Astuce : On nettoie l'erreur dès que l'utilisateur retouche au champ
-            input.oninput = function() {
-                input.setCustomValidity("");
+            // Nettoyage au changement
+            firstNameInput.oninput = function() {
+                firstNameInput.setCustomValidity("");
             };
-        } else {
-            // Validation réussie
-            currentProfName = nameValue;
+            isValid = false;
+        }
+        
+        if (isValid && !validateNameField(lastNameValue)) {
+            lastNameInput.setCustomValidity(errorMsg);
+            lastNameInput.reportValidity();
             
-            // Mise à jour de l'affichage si une discipline est active
+            // Nettoyage au changement
+            lastNameInput.oninput = function() {
+                lastNameInput.setCustomValidity("");
+            };
+            isValid = false;
+        }
+
+        if (isValid) {
+            // Mise à jour des variables globales
+            currentProfGender = genderValue;
+            // Formatage : Prénom Nom
+            currentProfName = `${firstNameValue.trim()} ${lastNameValue.trim()}`;
+            
+            // Mise à jour de l'affichage
             if(currentDiscipline) renderDiscipline(currentDiscipline);
             
-            // Feedback discret (optionnel)
-            // alert("Nom du professeur mis à jour !"); 
+            // alert("Informations mises à jour !");
         }
     }
 
@@ -1707,6 +1751,10 @@ const pedagogicalData = [
         currentDiscipline = discipline;
         const display = document.getElementById('fiche-display');
         display.innerHTML = '';
+
+        // Détermination de l'icône et du label en fonction du genre
+        let badgeIcon = 'fas fa-chalkboard-user'; // Icône plus neutre et pro
+        let badgeLabel = currentProfGender === 'M' ? 'Enseignant :' : 'Enseignante :';
 
         discipline.lessons.forEach(lesson => {
             const fiche = document.createElement('div');
@@ -1735,7 +1783,11 @@ const pedagogicalData = [
                 <div class="fiche-header">
                     <div class="header-main">
                         <h2>${discipline.title}</h2>
-                        <span class="prof-badge"><i class="fas fa-user-tie"></i> ${currentProfName}</span>
+                        <!-- BADGE PROFESSEUR DYNAMIQUE -->
+                        <span class="prof-badge">
+                            <i class="${badgeIcon}"></i> 
+                            <strong>${badgeLabel}</strong> ${currentProfName}
+                        </span>
                     </div>
                     <div class="unit-badge">
                         <span>Unité Didactique</span>
@@ -1787,6 +1839,9 @@ const pedagogicalData = [
         
         let allContent = '';
 
+        // Détermination des infos prof pour l'impression groupée
+        let printProfLabel = currentProfGender === 'M' ? 'Enseignant :' : 'Enseignante :';
+
         pedagogicalData.forEach(discipline => {
             discipline.lessons.forEach(lesson => {
                 let stepsHtml = '';
@@ -1810,7 +1865,7 @@ const pedagogicalData = [
                         <div class="fiche-header" style="border-bottom: 2px solid black; margin-bottom:15px;">
                             <div class="header-main">
                                 <h2 style="color:black; font-size:18pt; margin:0;">${discipline.title} : ${lesson.title}</h2>
-                                <p style="margin:5px 0; color:black;">Prof : ${currentProfName}</p>
+                                <p style="margin:5px 0; color:black;">${printProfLabel} ${currentProfName}</p>
                             </div>
                             <div style="border:1px solid black; padding:5px; display:inline-block;">
                                 Unité 3
@@ -1848,6 +1903,57 @@ const pedagogicalData = [
 
     // Init App
     init();
+
+    // ==========================================
+    // SCRIPT DE DISSUASION ANTI-INSPECTION
+    // ==========================================
+    (function() {
+        let isPrinting = false;
+
+        // Détection du mode impression pour désactiver temporairement les protections
+        window.addEventListener('beforeprint', () => {
+            isPrinting = true;
+        });
+
+        window.addEventListener('afterprint', () => {
+            isPrinting = false;
+        });
+
+        // 1. Désactiver le clic droit (Menu contextuel)
+        document.addEventListener('contextmenu', (e) => {
+            if (!isPrinting) e.preventDefault();
+        });
+
+        // 2. Bloquer les raccourcis clavier courants pour DevTools / Source
+        document.addEventListener('keydown', (e) => {
+            if (isPrinting) return;
+
+            // Touches Control ou Command (Mac)
+            const isCtrl = e.ctrlKey || e.metaKey;
+            const isShift = e.shiftKey;
+
+            // Liste des conditions de blocage
+            if (
+                e.key === 'F12' || // Touche F12
+                (isCtrl && isShift && ['I', 'J', 'C'].includes(e.key.toUpperCase())) || // Ctrl+Shift+I/J/C
+                (isCtrl && ['U', 'S'].includes(e.key.toUpperCase())) // Ctrl+U (Source), Ctrl+S (Sauvegarder)
+                // Note : Ctrl+P (Impression) n'est PAS bloqué ici
+            ) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        });
+
+        // 3. Empêcher l'ouverture de liens "view-source:" (si présents)
+        document.addEventListener('click', (e) => {
+            if (isPrinting) return;
+            
+            const link = e.target.closest('a');
+            if (link && link.href && link.href.startsWith('view-source:')) {
+                e.preventDefault();
+            }
+        });
+    })();
 
 </script>
 
